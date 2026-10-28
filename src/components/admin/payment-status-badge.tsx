@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils/format";
 
 const STYLES: Record<string, string> = {
   pending: "bg-surface-raised text-muted border-border",
-  paid: "bg-brand-soft text-brand border-brand/30",
+  paid: "bg-brand-soft text-brand-text border-brand/30",
   failed: "bg-danger-soft text-danger border-danger/30",
   cancelled: "bg-surface-raised text-muted border-border",
   refunded: "bg-gold-soft text-gold border-gold/40",

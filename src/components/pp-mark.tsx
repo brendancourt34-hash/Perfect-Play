@@ -1,14 +1,24 @@
 /**
- * The Perfect Play brand mark. Phase 23H: replaced the hand-authored SVG "PP" glyph with
- * the final provided logo asset (public/pp-logo.png) — this component only renders that
- * PNG at a given size, it never redraws/reinterprets the artwork. The source image has
- * its own opaque background baked in (not transparent), so it renders as a self-contained
- * square tile — size it directly via `className` rather than placing it inside a
- * separately-colored badge/background (that pattern was needed for the old transparent
- * SVG glyph, not this asset).
+ * The Perfect Play brand mark — Option D "Scoreboard": a slanted jersey-red block with a
+ * condensed "P". Drawn as inline SVG so the letter scales with whatever size `className`
+ * gives it (e.g. "h-8 w-8"). The old green PNG stays in public/ until a red icon set is made.
  */
 export function PPMark({ className, title = "Perfect Play" }: { className?: string; title?: string }) {
-  // A single static logo file with no responsive/optimization needs — plain <img> is fine.
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img src="/pp-logo.png" alt={title} className={className} style={{ objectFit: "contain" }} />;
+  return (
+    <svg viewBox="0 0 40 40" role="img" aria-label={title} className={className}>
+      <title>{title}</title>
+      <polygon points="8,0 40,0 32,40 0,40" fill="var(--brand)" />
+      <text
+        x="20"
+        y="31"
+        textAnchor="middle"
+        fill="#ffffff"
+        fontSize="30"
+        fontWeight="800"
+        style={{ fontFamily: "var(--font-saira-condensed), sans-serif", fontStyle: "italic" }}
+      >
+        P
+      </text>
+    </svg>
+  );
 }

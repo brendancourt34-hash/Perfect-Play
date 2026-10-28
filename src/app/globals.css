@@ -1,23 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0e14;
-  --surface: #10161f;
-  --surface-raised: #161d29;
-  --border: #232c3a;
-  --foreground: #eef2f7;
-  --muted: #8b97a8;
-  --muted-2: #5c6779;
+  /* Option D "Scoreboard" (Oct 2026): matte black, steel greys, one jersey-red accent. */
+  --background: #0e0f11;
+  --surface: #17191c;
+  --surface-raised: #1e2024;
+  --border: #2a2d32;
+  --foreground: #f2f2f2;
+  --muted: #a0a4aa;
+  --muted-2: #80858c;
 
-  --brand: #1fb787;
-  --brand-strong: #17a375;
-  --brand-soft: rgba(31, 183, 135, 0.14);
+  /* Solid fills (buttons, active states) — white text sits on it. */
+  --brand: #d7261c;
+  --brand-strong: #b01e15;
+  --brand-soft: rgba(215, 38, 28, 0.16);
+  /* Red used as TEXT on the dark background (passes 4.5:1). */
+  --brand-text: #ff5a4f;
 
-  --gold: #d9a441;
-  --gold-soft: rgba(217, 164, 65, 0.14);
+  --gold: #ffb547;
+  --gold-soft: rgba(255, 181, 71, 0.14);
 
-  --danger: #e5583f;
-  --danger-soft: rgba(229, 88, 63, 0.14);
+  /* Errors are orange so they never read as the (positive) brand red. */
+  --danger: #ff8a3d;
+  --danger-soft: rgba(255, 138, 61, 0.14);
 }
 
 @theme inline {
@@ -31,12 +36,24 @@
   --color-brand: var(--brand);
   --color-brand-strong: var(--brand-strong);
   --color-brand-soft: var(--brand-soft);
+  --color-brand-text: var(--brand-text);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-saira);
+  --font-display: var(--font-saira-condensed);
   --font-mono: var(--font-geist-mono);
+
+  /* Scoreboard look: square corners everywhere; rounded-full (dots, avatars) still works. */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
 }
 
 * {
@@ -51,6 +68,13 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+h1,
+h2 {
+  font-family: var(--font-saira-condensed), var(--font-saira), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 ::selection {

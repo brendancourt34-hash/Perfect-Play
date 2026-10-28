@@ -35,7 +35,7 @@ export async function AccountBar() {
       {user ? (
         <>
           <AccountMenu initials={initialsFor(user.name, user.email)} email={user.email} />
-          <div className="flex items-center gap-2 rounded-full border border-brand/30 bg-brand-soft px-4 py-2 text-sm font-bold text-brand">
+          <div className="flex items-center gap-2 rounded-full border border-brand/30 bg-brand-soft px-4 py-2 text-sm font-bold text-brand-text">
             <Wallet2 className="h-4 w-4" strokeWidth={1.75} />
             {resolvedBalanceCents !== null ? formatAudCents(resolvedBalanceCents) : "—"}
           </div>

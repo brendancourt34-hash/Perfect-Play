@@ -181,7 +181,7 @@ export function RoundBuilder({ sportCode, sportName, syncMode, daySlots }: Round
           <button
             onClick={syncSchedule}
             disabled={syncing || (syncMode === "date-range" ? !startDate || !endDate : !seasonExternalId || !roundExternalId)}
-            className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-background disabled:opacity-50"
+            className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
           >
             {syncing ? "Syncing…" : "Sync real schedule"}
           </button>
@@ -189,7 +189,7 @@ export function RoundBuilder({ sportCode, sportName, syncMode, daySlots }: Round
             {loadingCandidates ? "Loading…" : "Reload candidates"}
           </button>
         </div>
-        {syncMessage && <p className="mt-2 text-sm text-brand">{syncMessage}</p>}
+        {syncMessage && <p className="mt-2 text-sm text-brand-text">{syncMessage}</p>}
         {syncError && <p className="mt-2 text-sm text-danger">{syncError}</p>}
       </section>
 
@@ -260,7 +260,7 @@ export function RoundBuilder({ sportCode, sportName, syncMode, daySlots }: Round
         <div className="mt-4 flex flex-wrap gap-3 text-xs">
           {countByDay &&
             Object.entries(countByDay).map(([day, count]) => (
-              <span key={day} className={`rounded-full border px-2.5 py-1 ${count === 2 ? "border-brand/30 text-brand" : "border-border text-muted"}`}>
+              <span key={day} className={`rounded-full border px-2.5 py-1 ${count === 2 ? "border-brand/30 text-brand-text" : "border-border text-muted"}`}>
                 {day[0].toUpperCase() + day.slice(1)}: {count}/2
               </span>
             ))}
@@ -285,7 +285,7 @@ export function RoundBuilder({ sportCode, sportName, syncMode, daySlots }: Round
               className="w-64 rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground"
             />
           </label>
-          <button onClick={createRound} disabled={creating || !shapeCheck.valid || !seasonId || assignmentList.length === 0} className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-background disabled:opacity-50">
+          <button onClick={createRound} disabled={creating || !shapeCheck.valid || !seasonId || assignmentList.length === 0} className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">
             {creating ? "Creating…" : `Create ${sportName} round`}
           </button>
         </div>
@@ -303,7 +303,7 @@ export function RoundBuilder({ sportCode, sportName, syncMode, daySlots }: Round
             ))}
           </ul>
         )}
-        {createdRoundId && <p className="mt-2 text-sm text-brand">Round #{createdRoundId} created.</p>}
+        {createdRoundId && <p className="mt-2 text-sm text-brand-text">Round #{createdRoundId} created.</p>}
       </section>
     </div>
   );

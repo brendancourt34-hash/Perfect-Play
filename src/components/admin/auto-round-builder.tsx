@@ -219,12 +219,12 @@ export function AutoRoundBuilder({ sportCode, sportName, syncMode }: AutoRoundBu
           <button
             onClick={syncSchedule}
             disabled={syncing || (syncMode === "date-range" ? !startDate || !endDate : !seasonExternalId || !roundExternalId)}
-            className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-background disabled:opacity-50"
+            className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
           >
             {syncing ? "Syncing…" : "Sync real schedule"}
           </button>
         </div>
-        {syncMessage && <p className="mt-2 text-sm text-brand">{syncMessage}</p>}
+        {syncMessage && <p className="mt-2 text-sm text-brand-text">{syncMessage}</p>}
         {syncError && <p className="mt-2 text-sm text-danger">{syncError}</p>}
       </section>
 
@@ -254,7 +254,7 @@ export function AutoRoundBuilder({ sportCode, sportName, syncMode }: AutoRoundBu
           {canQuery && !selection && (
             <div className="flex flex-col gap-2">
               <p className="text-sm text-muted">Automatic selection not generated.</p>
-              <button onClick={generate} disabled={generating} className="w-fit rounded-md bg-brand px-4 py-2 text-sm font-semibold text-background disabled:opacity-50">
+              <button onClick={generate} disabled={generating} className="w-fit rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">
                 {generating ? "Generating…" : "Generate 8 random games"}
               </button>
             </div>
@@ -263,7 +263,7 @@ export function AutoRoundBuilder({ sportCode, sportName, syncMode }: AutoRoundBu
           {selection && (
             <div className="flex flex-col gap-3">
               <div className="flex flex-wrap items-center gap-2">
-                <span className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${isLocked ? "border-brand/30 bg-brand-soft text-brand" : "border-gold/30 text-gold"}`}>
+                <span className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${isLocked ? "border-brand/30 bg-brand-soft text-brand-text" : "border-gold/30 text-gold"}`}>
                   Status: {isLocked ? "LOCKED" : "GENERATED"}
                 </span>
                 <span className="text-xs text-muted">Games selected: {games.length}</span>
@@ -280,7 +280,7 @@ export function AutoRoundBuilder({ sportCode, sportName, syncMode }: AutoRoundBu
                 // error here; it's still a perfectly valid, fully real 8-game round.
                 <div className="flex flex-wrap gap-2 text-xs">
                   {Object.entries(countByDay).map(([day, count]) => (
-                    <span key={day} className={`rounded-full border px-2.5 py-1 ${count === shapeConfig.gamesPerDay ? "border-brand/30 text-brand" : "border-border text-muted"}`}>
+                    <span key={day} className={`rounded-full border px-2.5 py-1 ${count === shapeConfig.gamesPerDay ? "border-brand/30 text-brand-text" : "border-border text-muted"}`}>
                       {day[0].toUpperCase() + day.slice(1)}: {count} (preferred {shapeConfig.gamesPerDay})
                     </span>
                   ))}
@@ -304,13 +304,13 @@ export function AutoRoundBuilder({ sportCode, sportName, syncMode }: AutoRoundBu
                   <button onClick={regenerate} disabled={generating} className="rounded-md border border-border px-4 py-2 text-sm text-foreground disabled:opacity-50">
                     {generating ? "Regenerating…" : "Regenerate"}
                   </button>
-                  <button onClick={lock} disabled={locking || !roundName} className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-background disabled:opacity-50">
+                  <button onClick={lock} disabled={locking || !roundName} className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">
                     {locking ? "Locking…" : "Lock game selection"}
                   </button>
                 </div>
               )}
               {isLocked && (
-                <p className="text-sm text-brand">
+                <p className="text-sm text-brand-text">
                   This selection is locked and cannot be changed. The round is now live in Competitions, exactly like any other Perfect Play round.
                 </p>
               )}

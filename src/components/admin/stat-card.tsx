@@ -7,7 +7,7 @@ export function StatCard({ label, value, tone }: { label: string; value: string 
       <p
         className={cn(
           "mt-1 text-2xl font-bold",
-          tone === "brand" ? "text-brand" : tone === "gold" ? "text-gold" : tone === "danger" ? "text-danger" : "text-foreground",
+          tone === "brand" ? "text-brand-text" : tone === "gold" ? "text-gold" : tone === "danger" ? "text-danger" : "text-foreground",
         )}
       >
         {value}

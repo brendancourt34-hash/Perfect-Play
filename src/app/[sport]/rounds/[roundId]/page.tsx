@@ -63,7 +63,7 @@ export default async function RoundPage({
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <Link href={`/${sport.slug}`} className="text-xs font-medium text-brand hover:underline">
+      <Link href={`/${sport.slug}`} className="text-xs font-medium text-brand-text hover:underline">
         &larr; All {sport.name} rounds
       </Link>
 
@@ -84,7 +84,7 @@ export default async function RoundPage({
             {effectiveState === "open" && (
               <Link
                 href={`/${sport.slug}/rounds/${round.id}/enter`}
-                className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-brand-strong"
+                className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-strong"
               >
                 Enter Perfect Play — {formatAudCents(competition.entryFeeCents)}
               </Link>
@@ -92,7 +92,7 @@ export default async function RoundPage({
             {effectiveState === "settled" && (
               <Link
                 href={`/${sport.slug}/rounds/${round.id}/results`}
-                className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-brand-strong"
+                className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-strong"
               >
                 View Results
               </Link>

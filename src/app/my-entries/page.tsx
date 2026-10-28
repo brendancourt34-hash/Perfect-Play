@@ -83,7 +83,7 @@ async function EntryGroupCard({ group }: { group: UserEntryGroupSummary }) {
               {entryCount} {entryCount === 1 ? "Entry" : "Entries"}
             </p>
             {entryCount > 1 && (
-              <span className="rounded-full border border-brand/30 bg-brand-soft px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand">
+              <span className="rounded-full border border-brand/30 bg-brand-soft px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-text">
                 Same Picks
               </span>
             )}
@@ -142,7 +142,7 @@ async function EntryGroupCard({ group }: { group: UserEntryGroupSummary }) {
 
       <Link
         href={`/${sport?.slug ?? group.sportCode}/rounds/${group.roundId}/results`}
-        className="mt-4 inline-block text-xs font-medium text-brand hover:underline"
+        className="mt-4 inline-block text-xs font-medium text-brand-text hover:underline"
       >
         View round results &rarr;
       </Link>

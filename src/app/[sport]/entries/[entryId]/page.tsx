@@ -39,7 +39,7 @@ export default async function EntryResultPage({
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <Link href={`/${sport.slug}/rounds/${entry.roundId}`} className="text-xs font-medium text-brand hover:underline">
+      <Link href={`/${sport.slug}/rounds/${entry.roundId}`} className="text-xs font-medium text-brand-text hover:underline">
         &larr; Back to round
       </Link>
 
@@ -76,7 +76,7 @@ export default async function EntryResultPage({
 
       <Link
         href={`/${sport.slug}/rounds/${entry.roundId}/results`}
-        className="mt-6 inline-block text-xs font-medium text-brand hover:underline"
+        className="mt-6 inline-block text-xs font-medium text-brand-text hover:underline"
       >
         View full competition results &rarr;
       </Link>

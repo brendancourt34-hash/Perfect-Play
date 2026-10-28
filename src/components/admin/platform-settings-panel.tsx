@@ -157,7 +157,7 @@ export function PlatformSettingsPanel({ initialMaxEntries, initialPackages, init
           <button
             onClick={saveMaxEntries}
             disabled={maxEntriesSaving}
-            className="rounded-md bg-brand px-3 py-1.5 text-sm font-bold text-black disabled:opacity-50"
+            className="rounded-md bg-brand px-3 py-1.5 text-sm font-bold text-white disabled:opacity-50"
           >
             {maxEntriesSaving ? "Saving…" : "Save"}
           </button>
@@ -188,7 +188,7 @@ export function PlatformSettingsPanel({ initialMaxEntries, initialPackages, init
               <button
                 onClick={savePrizePoolPercent}
                 disabled={prizePoolSaving}
-                className="rounded-md bg-brand px-3 py-1.5 text-sm font-bold text-black disabled:opacity-50"
+                className="rounded-md bg-brand px-3 py-1.5 text-sm font-bold text-white disabled:opacity-50"
               >
                 {prizePoolSaving ? "Saving…" : "Save"}
               </button>
@@ -258,7 +258,7 @@ export function PlatformSettingsPanel({ initialMaxEntries, initialPackages, init
             Badge (optional)
             <input value={newBadge} onChange={(e) => setNewBadge(e.target.value)} placeholder="e.g. BEST VALUE" className="rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground" />
           </label>
-          <button onClick={createPackage} disabled={creating} className="rounded-md bg-brand px-3 py-1.5 text-sm font-bold text-black disabled:opacity-50">
+          <button onClick={createPackage} disabled={creating} className="rounded-md bg-brand px-3 py-1.5 text-sm font-bold text-white disabled:opacity-50">
             {creating ? "Adding…" : "Add package"}
           </button>
         </div>

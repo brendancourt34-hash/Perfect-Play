@@ -55,7 +55,7 @@ export function CommercialModelOverride({ competitionId, currentBps, isOverridde
         className="w-20 rounded-md border border-border bg-background px-2 py-1 text-sm text-foreground"
       />
       <span className="text-sm text-foreground">%</span>
-      <button onClick={saveOverride} disabled={saving} className="rounded-md bg-brand px-2 py-1 text-xs font-bold text-black disabled:opacity-50">
+      <button onClick={saveOverride} disabled={saving} className="rounded-md bg-brand px-2 py-1 text-xs font-bold text-white disabled:opacity-50">
         {saving ? "Saving…" : "Save override"}
       </button>
       {isOverridden && (

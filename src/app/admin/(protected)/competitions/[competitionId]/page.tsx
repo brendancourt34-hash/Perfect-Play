@@ -124,7 +124,7 @@ export default async function AdminCompetitionDetailPage({ params }: { params: P
           {c.resultSummary.perfect} perfect · {c.resultSummary.notPerfect} not perfect · {c.resultSummary.pending} pending
         </p>
         {c.state === "settled" && c.resultSummary.perfect > 0 && (
-          <p className="mt-1 text-sm text-brand">
+          <p className="mt-1 text-sm text-brand-text">
             {c.resultSummary.perfect} equal winner{c.resultSummary.perfect === 1 ? "" : "s"} — no ranking, prize pool split evenly.
           </p>
         )}
@@ -253,7 +253,7 @@ export default async function AdminCompetitionDetailPage({ params }: { params: P
                 {entries.map((e) => (
                   <tr key={e.entryId} className="border-t border-border">
                     <td className="px-3 py-2">
-                      <Link href={`/admin/entries/${e.entryId}`} className="font-medium text-brand hover:underline">
+                      <Link href={`/admin/entries/${e.entryId}`} className="font-medium text-brand-text hover:underline">
                         #{e.entryId}
                       </Link>
                     </td>
@@ -266,7 +266,7 @@ export default async function AdminCompetitionDetailPage({ params }: { params: P
                     <td className="px-3 py-2 text-muted">
                       {e.gamesCorrect}/{e.gamesTotal} correct{e.gamesPending > 0 ? `, ${e.gamesPending} pending` : ""}
                     </td>
-                    <td className={`px-3 py-2 ${e.prizeAllocationCents > 0 ? "font-semibold text-brand" : "text-muted"}`}>
+                    <td className={`px-3 py-2 ${e.prizeAllocationCents > 0 ? "font-semibold text-brand-text" : "text-muted"}`}>
                       {e.prizeAllocationCents > 0 ? formatAudCents(e.prizeAllocationCents) : "—"}
                     </td>
                   </tr>
@@ -284,7 +284,7 @@ function InfoBox({ label, value, tone }: { label: string; value: string; tone?: 
   return (
     <div className="rounded-lg border border-border bg-surface p-3">
       <p className="text-xs font-semibold uppercase tracking-wide text-muted">{label}</p>
-      <p className={`mt-1 text-sm font-bold ${tone === "brand" ? "text-brand" : tone === "gold" ? "text-gold" : "text-foreground"}`}>{value}</p>
+      <p className={`mt-1 text-sm font-bold ${tone === "brand" ? "text-brand-text" : tone === "gold" ? "text-gold" : "text-foreground"}`}>{value}</p>
     </div>
   );
 }

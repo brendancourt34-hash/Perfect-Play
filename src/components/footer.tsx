@@ -16,7 +16,7 @@ export function Footer() {
           <div>
             <p className="flex items-center gap-1.5 text-sm font-semibold">
               <PPMark className="h-4 w-4 rounded-sm" />
-              Perfect <span className="text-brand">Play</span>
+              Perfect <span className="text-brand-text">Play</span>
             </p>
             <p className="mt-1 max-w-md text-xs text-muted">
               Independent statistics and analysis for NRL, AFL, NBA and NFL. Not affiliated with

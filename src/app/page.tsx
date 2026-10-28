@@ -131,7 +131,7 @@ export default async function Home() {
               <h1 className="text-4xl font-extrabold uppercase leading-tight tracking-tight text-foreground sm:text-6xl">
                 Go Perfect.
                 <br />
-                <span className="text-brand">Take the entire pool.</span>
+                <span className="text-brand-text">Take the entire pool.</span>
               </h1>
               <p className="mt-6 max-w-xl text-sm text-muted sm:text-base">
                 No entries go perfect, pool rolls over to the following week. More than one entry goes perfect, split
@@ -142,7 +142,7 @@ export default async function Home() {
                   <Link
                     key={s.code}
                     href={`/${s.slug}`}
-                    className="rounded-lg border border-brand/30 bg-brand-soft px-5 py-2.5 text-sm font-semibold text-brand transition-colors hover:border-brand hover:bg-brand hover:text-background"
+                    className="rounded-lg border border-brand/30 bg-brand-soft px-5 py-2.5 text-sm font-semibold text-brand-text transition-colors hover:border-brand hover:bg-brand hover:text-white"
                   >
                     Play {s.name} — $5
                   </Link>
@@ -155,7 +155,7 @@ export default async function Home() {
         <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="mb-6 flex items-baseline justify-between">
             <h2 className="text-xs font-bold uppercase tracking-wider text-foreground">Choose a Sport</h2>
-            <Link href="/how-it-works" className="text-xs font-medium text-brand hover:underline">
+            <Link href="/how-it-works" className="text-xs font-medium text-brand-text hover:underline">
               How it works &rarr;
             </Link>
           </div>
@@ -166,10 +166,10 @@ export default async function Home() {
                 href={`/${sport.slug}`}
                 className="group rounded-xl border border-border bg-surface p-5 transition-colors hover:border-brand/30"
               >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-xs font-extrabold text-brand">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-xs font-extrabold text-brand-text">
                   {sport.code.toUpperCase()}
                 </span>
-                <p className="mt-4 text-sm font-semibold text-foreground group-hover:text-brand">{sport.name}</p>
+                <p className="mt-4 text-sm font-semibold text-foreground group-hover:text-brand-text">{sport.name}</p>
                 <p className="mt-1 text-xs text-muted">
                   {round ? (round.round.name ?? `Round ${round.round.roundNumber}`) : "No rounds yet"}
                 </p>
@@ -179,7 +179,7 @@ export default async function Home() {
                   </p>
                 )}
                 {round && round.prizePoolVisible && round.currentPrizePoolCents !== null ? (
-                  <p className="mt-1 text-sm font-bold text-brand">{formatAudCents(round.currentPrizePoolCents)}</p>
+                  <p className="mt-1 text-sm font-bold text-brand-text">{formatAudCents(round.currentPrizePoolCents)}</p>
                 ) : (
                   <p className="mt-1 inline-block rounded border border-border bg-surface-raised px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-muted">
                     {revealPill(sport)}
@@ -195,7 +195,7 @@ export default async function Home() {
             <div className="rounded-2xl border border-brand/30 bg-surface p-6 sm:p-8">
               <div className="flex flex-wrap items-start justify-between gap-6">
                 <div className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-xs font-extrabold text-brand">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-xs font-extrabold text-brand-text">
                     {featured.sport.code.toUpperCase()}
                   </span>
                   <div>
@@ -216,7 +216,7 @@ export default async function Home() {
                 <div>
                   <p className="text-xs uppercase tracking-wide text-muted">Prize Pool</p>
                   {featured.round.prizePoolVisible && featured.round.currentPrizePoolCents !== null ? (
-                    <p className="text-2xl font-extrabold text-brand">{formatAudCents(featured.round.currentPrizePoolCents)}</p>
+                    <p className="text-2xl font-extrabold text-brand-text">{formatAudCents(featured.round.currentPrizePoolCents)}</p>
                   ) : (
                     <p className="mt-1 inline-block rounded border border-border bg-surface-raised px-2 py-1 text-xs font-bold uppercase tracking-wide text-muted">
                       {revealPill(featured.sport)}
@@ -225,7 +225,7 @@ export default async function Home() {
                 </div>
                 <Link
                   href={`/${featured.sport.slug}/rounds/${featured.round.round.id}/enter`}
-                  className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-brand-strong"
+                  className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-strong"
                 >
                   Make Your Picks &rarr;
                 </Link>
@@ -240,7 +240,7 @@ export default async function Home() {
               href="/how-it-works"
               className="flex items-center gap-4 rounded-xl border border-border bg-surface p-5 transition-colors hover:border-brand/30"
             >
-              <Trophy className="h-5 w-5 text-brand" strokeWidth={1.75} />
+              <Trophy className="h-5 w-5 text-brand-text" strokeWidth={1.75} />
               <div>
                 <p className="text-sm font-semibold text-foreground">How it Works</p>
                 <p className="text-xs text-muted">Simple. Pick. Play. Go Perfect.</p>
@@ -250,7 +250,7 @@ export default async function Home() {
               href="/how-it-works#rules"
               className="flex items-center gap-4 rounded-xl border border-border bg-surface p-5 transition-colors hover:border-brand/30"
             >
-              <Wallet2 className="h-5 w-5 text-brand" strokeWidth={1.75} />
+              <Wallet2 className="h-5 w-5 text-brand-text" strokeWidth={1.75} />
               <div>
                 <p className="text-sm font-semibold text-foreground">Rules &amp; FAQ</p>
                 <p className="text-xs text-muted">Every sport, its own separate pool.</p>
@@ -283,7 +283,7 @@ export default async function Home() {
         <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
           <div className="grid gap-6 sm:grid-cols-3">
             <div className="rounded-xl border border-border bg-surface p-6">
-              <ShieldCheck className="h-5 w-5 text-brand" strokeWidth={1.75} />
+              <ShieldCheck className="h-5 w-5 text-brand-text" strokeWidth={1.75} />
               <h3 className="mt-4 text-sm font-semibold text-foreground">Pick one player, every game</h3>
               <p className="mt-2 text-sm text-muted">
                 For every game in the round, pick the one player you think will score — a try scorer for NRL, a goal
@@ -292,7 +292,7 @@ export default async function Home() {
               </p>
             </div>
             <div className="rounded-xl border border-border bg-surface p-6">
-              <TrendingUp className="h-5 w-5 text-brand" strokeWidth={1.75} />
+              <TrendingUp className="h-5 w-5 text-brand-text" strokeWidth={1.75} />
               <h3 className="mt-4 text-sm font-semibold text-foreground">Get every pick right</h3>
               <p className="mt-2 text-sm text-muted">
                 Your pick needs to score for that game to be Perfect. There are no points and no leaderboard —
@@ -300,7 +300,7 @@ export default async function Home() {
               </p>
             </div>
             <div className="rounded-xl border border-border bg-surface p-6">
-              <CheckCircle2 className="h-5 w-5 text-brand" strokeWidth={1.75} />
+              <CheckCircle2 className="h-5 w-5 text-brand-text" strokeWidth={1.75} />
               <h3 className="mt-4 text-sm font-semibold text-foreground">Go PERFECT. Take the entire pool.</h3>
               <p className="mt-2 text-sm text-muted">
                 Get every game in the round PERFECT and your entry takes the entire pool. More than one PERFECT
@@ -321,13 +321,13 @@ export default async function Home() {
 
         {/* Hero */}
         <section className="relative mx-8 mt-4 overflow-hidden rounded-2xl border border-border bg-grid">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(31,183,135,0.16),transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(215,38,28,0.14),transparent_60%)]" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
           <div className="relative px-10 py-14">
             <h1 className="text-5xl font-extrabold uppercase leading-[1.05] tracking-tight text-foreground xl:text-6xl">
               Go Perfect.
               <br />
-              <span className="text-brand">Take the entire pool.</span>
+              <span className="text-brand-text">Take the entire pool.</span>
             </h1>
             <p className="mt-5 max-w-md text-sm text-muted">
               No entries go perfect, pool rolls over to the following week. More than one entry goes perfect, split
@@ -346,15 +346,15 @@ export default async function Home() {
                 href={`/${sport.slug}`}
                 className="group flex flex-col items-center rounded-xl border border-border bg-surface px-4 py-6 text-center transition-colors hover:border-brand/30"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-sm font-extrabold text-brand">
+                <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-sm font-extrabold text-brand-text">
                   {sport.code.toUpperCase()}
                 </span>
-                <p className="mt-4 text-sm font-bold text-foreground group-hover:text-brand">{sport.name}</p>
+                <p className="mt-4 text-sm font-bold text-foreground group-hover:text-brand-text">{sport.name}</p>
                 <p className="mt-1 text-xs text-muted">
                   {round ? (round.round.name ?? `Round ${round.round.roundNumber}`) : "No rounds yet"}
                 </p>
                 {round && round.prizePoolVisible && round.currentPrizePoolCents !== null ? (
-                  <p className="mt-3 text-lg font-extrabold text-brand">{formatAudCents(round.currentPrizePoolCents)}</p>
+                  <p className="mt-3 text-lg font-extrabold text-brand-text">{formatAudCents(round.currentPrizePoolCents)}</p>
                 ) : (
                   <p className="mt-3 rounded border border-border bg-surface-raised px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-muted">
                     {revealPill(sport)}
@@ -374,9 +374,9 @@ export default async function Home() {
                 <br />
                 From Every Game.
                 <br />
-                <span className="text-brand">Win Big.</span>
+                <span className="text-brand-text">Win Big.</span>
               </p>
-              <span className="mt-4 text-xs font-bold text-brand">Learn More &rarr;</span>
+              <span className="mt-4 text-xs font-bold text-brand-text">Learn More &rarr;</span>
             </Link>
           </div>
         </section>
@@ -385,10 +385,10 @@ export default async function Home() {
         {featured && (
           <section className="grid grid-cols-3 gap-4 px-8 pt-8">
             <div className="relative col-span-2 overflow-hidden rounded-2xl border border-brand/30 bg-surface p-8">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(31,183,135,0.12),transparent_65%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(215,38,28,0.10),transparent_65%)]" />
               <div className="relative flex flex-wrap items-start justify-between gap-6">
                 <div className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-xs font-extrabold text-brand">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-xs font-extrabold text-brand-text">
                     {featured.sport.code.toUpperCase()}
                   </span>
                   <div>
@@ -409,7 +409,7 @@ export default async function Home() {
                 <div>
                   <p className="text-xs uppercase tracking-wide text-muted">Prize Pool</p>
                   {featured.round.prizePoolVisible && featured.round.currentPrizePoolCents !== null ? (
-                    <p className="text-4xl font-extrabold text-brand">{formatAudCents(featured.round.currentPrizePoolCents)}</p>
+                    <p className="text-4xl font-extrabold text-brand-text">{formatAudCents(featured.round.currentPrizePoolCents)}</p>
                   ) : (
                     <p className="mt-1 inline-block rounded border border-border bg-surface-raised px-2 py-1 text-xs font-bold uppercase tracking-wide text-muted">
                       {revealPill(featured.sport)}
@@ -418,7 +418,7 @@ export default async function Home() {
                 </div>
                 <Link
                   href={`/${featured.sport.slug}/rounds/${featured.round.round.id}/enter`}
-                  className="rounded-full bg-brand px-8 py-3.5 text-sm font-bold text-background transition-colors hover:bg-brand-strong"
+                  className="rounded-full bg-brand px-8 py-3.5 text-sm font-bold text-white transition-colors hover:bg-brand-strong"
                 >
                   Make Your Picks &rarr;
                 </Link>
@@ -430,7 +430,7 @@ export default async function Home() {
                 href="/how-it-works"
                 className="flex items-center gap-4 rounded-xl border border-border bg-surface p-5 transition-colors hover:border-brand/30"
               >
-                <Trophy className="h-5 w-5 shrink-0 text-brand" strokeWidth={1.75} />
+                <Trophy className="h-5 w-5 shrink-0 text-brand-text" strokeWidth={1.75} />
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-bold uppercase text-foreground">How it Works</p>
                   <p className="text-xs text-muted">Simple. Pick. Play. Go Perfect.</p>
@@ -446,7 +446,7 @@ export default async function Home() {
           <section className="px-8 py-10">
             <div className="mb-4 flex items-baseline justify-between">
               <h2 className="text-xs font-bold uppercase tracking-wider text-foreground">Upcoming Competitions</h2>
-              <Link href="/nrl" className="text-xs font-bold text-brand hover:underline">
+              <Link href="/nrl" className="text-xs font-bold text-brand-text hover:underline">
                 View All &rarr;
               </Link>
             </div>
@@ -459,7 +459,7 @@ export default async function Home() {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-[10px] font-extrabold text-brand">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-brand/30 bg-brand-soft text-[10px] font-extrabold text-brand-text">
                         {sport.code.toUpperCase()}
                       </span>
                       <div>
@@ -475,7 +475,7 @@ export default async function Home() {
                   </div>
                   <div className="mt-3">
                     {data.prizePoolVisible && data.currentPrizePoolCents !== null ? (
-                      <p className="text-sm font-bold text-brand">{formatAudCents(data.currentPrizePoolCents)}</p>
+                      <p className="text-sm font-bold text-brand-text">{formatAudCents(data.currentPrizePoolCents)}</p>
                     ) : (
                       <p className="inline-block rounded border border-border bg-surface-raised px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-muted">
                         {revealPill(sport)}
@@ -505,10 +505,10 @@ async function AccountWalletCard() {
       href="/how-it-works"
       className="flex items-center gap-4 rounded-xl border border-border bg-surface p-5 transition-colors hover:border-brand/30"
     >
-      <Wallet2 className="h-5 w-5 shrink-0 text-brand" strokeWidth={1.75} />
+      <Wallet2 className="h-5 w-5 shrink-0 text-brand-text" strokeWidth={1.75} />
       <div className="min-w-0 flex-1">
         <p className="text-sm font-bold uppercase text-foreground">My Wallet</p>
-        <p className="text-xs font-bold text-brand">{balanceCents !== null ? formatAudCents(balanceCents) : "Log in to view balance"}</p>
+        <p className="text-xs font-bold text-brand-text">{balanceCents !== null ? formatAudCents(balanceCents) : "Log in to view balance"}</p>
       </div>
     </Link>
   );

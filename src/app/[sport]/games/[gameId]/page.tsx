@@ -37,7 +37,7 @@ export default async function GamePage({
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-      <Link href={`/${sport.slug}`} className="text-xs font-medium text-brand hover:underline">
+      <Link href={`/${sport.slug}`} className="text-xs font-medium text-brand-text hover:underline">
         &larr; All {sport.name} rounds
       </Link>
 
@@ -55,7 +55,7 @@ export default async function GamePage({
       <p className="mt-4 rounded-lg border border-border bg-surface px-4 py-3 text-sm text-muted">
         Pick any 2 players from either team as your {selectionConfig.selectionLabel.toLowerCase()}s — selections
         are entered from the round page, not restricted to any position.{" "}
-        <Link href={`/${sport.slug}/rounds/${game.roundId}/enter`} className="font-medium text-brand hover:underline">
+        <Link href={`/${sport.slug}/rounds/${game.roundId}/enter`} className="font-medium text-brand-text hover:underline">
           Enter this round &rarr;
         </Link>
       </p>

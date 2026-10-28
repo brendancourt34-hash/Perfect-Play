@@ -82,7 +82,7 @@ export function CompetitionLifecycleActions({
           <button
             onClick={() => perform("settle")}
             disabled={loading}
-            className="rounded-md bg-brand px-3 py-1.5 text-sm font-semibold text-background disabled:opacity-50"
+            className="rounded-md bg-brand px-3 py-1.5 text-sm font-semibold text-white disabled:opacity-50"
           >
             {loading ? "Settling…" : "Settle"}
           </button>
@@ -93,7 +93,7 @@ export function CompetitionLifecycleActions({
 
   if (state === "closed") {
     return (
-      <button onClick={() => setConfirming("settle")} className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-background">
+      <button onClick={() => setConfirming("settle")} className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white">
         Settle competition
       </button>
     );

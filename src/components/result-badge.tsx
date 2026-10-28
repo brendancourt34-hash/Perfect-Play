@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils/format";
 
 const SELECTION_STYLES: Record<SelectionResult, string> = {
   pending: "bg-surface-raised text-muted border-border",
-  correct: "bg-brand-soft text-brand border-brand/30",
+  correct: "bg-brand-soft text-brand-text border-brand/30",
   incorrect: "bg-danger-soft text-danger border-danger/30",
   void: "bg-surface-raised text-muted border-border",
 };
@@ -80,7 +80,7 @@ export function GameStatusChip({ status, className }: { status: GameStatus; clas
       className={cn(
         "inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold tracking-wide",
         status === "live"
-          ? "border-brand/30 bg-brand-soft text-brand"
+          ? "border-brand/30 bg-brand-soft text-brand-text"
           : "border-border bg-surface-raised text-muted",
         className,
       )}
@@ -92,7 +92,7 @@ export function GameStatusChip({ status, className }: { status: GameStatus; clas
 
 const COMPETITION_STATE_STYLES: Record<EffectiveCompetitionState, string> = {
   not_yet_open: "border-border bg-surface-raised text-muted",
-  open: "border-brand/30 bg-brand-soft text-brand",
+  open: "border-brand/30 bg-brand-soft text-brand-text",
   closed: "border-gold/40 bg-gold-soft text-gold",
   settled: "border-border bg-surface-raised text-muted",
 };

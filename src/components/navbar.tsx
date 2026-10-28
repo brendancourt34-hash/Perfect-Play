@@ -20,7 +20,7 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           <PPMark className="h-8 w-8 rounded-md" />
           <span className="whitespace-nowrap text-base font-semibold tracking-tight">
-            Perfect <span className="text-brand">Play</span>
+            Perfect <span className="text-brand-text">Play</span>
           </span>
         </Link>
 

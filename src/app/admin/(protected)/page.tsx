@@ -57,7 +57,7 @@ export default async function AdminDashboardPage() {
                   <td className="px-3 py-2 font-medium text-foreground">{s.sportName}</td>
                   <td className="px-3 py-2 text-muted">{s.entryCount.toLocaleString()}</td>
                   <td className="px-3 py-2 text-foreground">{formatAudCents(s.totalEntryValueCents)}</td>
-                  <td className="px-3 py-2 text-brand">{formatAudCents(s.modeledPrizePoolCents)}</td>
+                  <td className="px-3 py-2 text-brand-text">{formatAudCents(s.modeledPrizePoolCents)}</td>
                   <td className="px-3 py-2 text-muted">{formatAudCents(s.commercialAllocationCents)}</td>
                 </tr>
               ))}
@@ -65,7 +65,7 @@ export default async function AdminDashboardPage() {
                 <td className="px-3 py-2 text-foreground">Total</td>
                 <td className="px-3 py-2 text-foreground">{d.entries.total.toLocaleString()}</td>
                 <td className="px-3 py-2 text-foreground">{formatAudCents(d.entries.totalEntryValueCents)}</td>
-                <td className="px-3 py-2 text-brand">{formatAudCents(d.entries.totalModeledPrizePoolCents)}</td>
+                <td className="px-3 py-2 text-brand-text">{formatAudCents(d.entries.totalModeledPrizePoolCents)}</td>
                 <td className="px-3 py-2 text-foreground">{formatAudCents(d.entries.totalCommercialAllocationCents)}</td>
               </tr>
             </tbody>
@@ -106,7 +106,7 @@ export default async function AdminDashboardPage() {
                     <td className="px-3 py-2 text-muted">{s.uniqueCustomers.toLocaleString()}</td>
                     <td className="px-3 py-2 text-muted">{s.perfectEntries.toLocaleString()}</td>
                     <td className="px-3 py-2 text-muted">{s.perfectCustomers.toLocaleString()}</td>
-                    <td className="px-3 py-2 text-brand">{s.perfectRatePct}%</td>
+                    <td className="px-3 py-2 text-brand-text">{s.perfectRatePct}%</td>
                     <td className="px-3 py-2 text-muted">{s.rolloverCount}</td>
                     <td className="px-3 py-2 text-gold">{formatAudCents(s.rolloverAmountCents)}</td>
                     <td className="px-3 py-2 text-muted">

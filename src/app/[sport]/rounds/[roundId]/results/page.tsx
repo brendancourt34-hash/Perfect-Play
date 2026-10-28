@@ -67,7 +67,7 @@ export default async function CompetitionResultsPage({
   if (!competition) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-        <Link href={`/${sport.slug}/rounds/${roundId}`} className="text-xs font-medium text-brand hover:underline">
+        <Link href={`/${sport.slug}/rounds/${roundId}`} className="text-xs font-medium text-brand-text hover:underline">
           &larr; {roundLabel}
         </Link>
         <h1 className="mt-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
@@ -103,7 +103,7 @@ export default async function CompetitionResultsPage({
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <Link href={`/${sport.slug}/rounds/${roundId}`} className="text-xs font-medium text-brand hover:underline">
+      <Link href={`/${sport.slug}/rounds/${roundId}`} className="text-xs font-medium text-brand-text hover:underline">
         &larr; {roundLabel}
       </Link>
 

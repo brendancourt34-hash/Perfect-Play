@@ -53,7 +53,7 @@ export default function HowItWorksPage() {
         <section>
           <h2 className="text-base font-semibold text-foreground">5. Take the pool</h2>
           <p className="mt-2 text-sm text-muted">
-            An entry goes <span className="font-semibold text-brand">PERFECT</span> only once every
+            An entry goes <span className="font-semibold text-brand-text">PERFECT</span> only once every
             selection in it is correct, and takes a share of the Prize Pool. If more than one entry
             goes PERFECT, the Prize Pool is split evenly between every PERFECT entry — a customer
             holding several PERFECT entries gets that many shares.
@@ -87,7 +87,7 @@ export default function HowItWorksPage() {
           <p className="mt-2 text-sm text-muted">
             Eligibility and participation requirements apply. Licensed operator details will appear
             here. Final terms are subject to regulatory and legal approval. See{" "}
-            <Link href="/terms" className="text-brand hover:underline">
+            <Link href="/terms" className="text-brand-text hover:underline">
               Terms &amp; Conditions
             </Link>{" "}
             for full detail.

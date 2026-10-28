@@ -57,7 +57,7 @@ export default async function EnterRoundPage({
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <Link href={`/${sport.slug}/rounds/${roundId}`} className="text-xs font-medium text-brand hover:underline">
+      <Link href={`/${sport.slug}/rounds/${roundId}`} className="text-xs font-medium text-brand-text hover:underline">
         &larr; {roundLabel}
       </Link>
 
@@ -98,7 +98,7 @@ export default async function EnterRoundPage({
                   ? `/${sport.slug}/rounds/${roundId}/results`
                   : `/${sport.slug}/rounds/${roundId}`
               }
-              className="mt-4 inline-block text-xs font-medium text-brand hover:underline"
+              className="mt-4 inline-block text-xs font-medium text-brand-text hover:underline"
             >
               {effectiveState === "settled" ? "View results" : "Back to round"} &rarr;
             </Link>

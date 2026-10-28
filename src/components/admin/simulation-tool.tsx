@@ -109,7 +109,7 @@ export function SimulationTool() {
               key={p.label}
               onClick={() => applyPreset(i)}
               className={`rounded-lg border px-3 py-1.5 text-xs font-semibold ${
-                presetIndex === i ? "border-brand bg-brand-soft text-brand" : "border-border bg-surface text-muted"
+                presetIndex === i ? "border-brand bg-brand-soft text-brand-text" : "border-border bg-surface text-muted"
               }`}
             >
               {p.label}
@@ -151,7 +151,7 @@ export function SimulationTool() {
           className="flex-1 rounded-md border border-border bg-background px-2 py-1 text-sm text-foreground"
           placeholder="Seed (reproducibility)"
         />
-        <button onClick={run} disabled={loading} className="rounded-lg bg-brand px-4 py-2 text-sm font-bold text-background disabled:opacity-50">
+        <button onClick={run} disabled={loading} className="rounded-lg bg-brand px-4 py-2 text-sm font-bold text-white disabled:opacity-50">
           {loading ? "Running…" : "Run simulation"}
         </button>
       </div>
@@ -213,7 +213,7 @@ function Stat({ label, value, tone }: { label: string; value: string; tone?: "br
   return (
     <div className="rounded-lg border border-border bg-surface-raised p-3">
       <p className="text-xs font-semibold uppercase tracking-wide text-muted">{label}</p>
-      <p className={`mt-1 text-sm font-bold ${tone === "brand" ? "text-brand" : "text-foreground"}`}>{value}</p>
+      <p className={`mt-1 text-sm font-bold ${tone === "brand" ? "text-brand-text" : "text-foreground"}`}>{value}</p>
     </div>
   );
 }

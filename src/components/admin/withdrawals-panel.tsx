@@ -78,7 +78,7 @@ export function WithdrawalsPanel({ initialWithdrawals }: { initialWithdrawals: W
                         Start processing
                       </button>
                     )}
-                    <button onClick={() => updateStatus(w.id, "completed")} disabled={updatingId === w.id} className="rounded-md bg-brand px-2 py-1 text-xs font-bold text-black disabled:opacity-50">
+                    <button onClick={() => updateStatus(w.id, "completed")} disabled={updatingId === w.id} className="rounded-md bg-brand px-2 py-1 text-xs font-bold text-white disabled:opacity-50">
                       Mark completed
                     </button>
                     <button onClick={() => updateStatus(w.id, "rejected")} disabled={updatingId === w.id} className="rounded-md border border-border px-2 py-1 text-xs font-bold text-foreground disabled:opacity-50">

@@ -125,7 +125,7 @@ export function TermsAdminPanel({ initialVersions }: { initialVersions: TermsVer
   return (
     <div className="grid grid-cols-[280px_1fr] gap-6">
       <div className="flex flex-col gap-2">
-        <button onClick={startNewDraft} className="rounded-md bg-brand px-3 py-1.5 text-left text-sm font-bold text-black">
+        <button onClick={startNewDraft} className="rounded-md bg-brand px-3 py-1.5 text-left text-sm font-bold text-white">
           + New draft
         </button>
         {versions.map((v) => (
@@ -211,7 +211,7 @@ export function TermsAdminPanel({ initialVersions }: { initialVersions: TermsVer
 
         {isEditable && (
           <div className="flex gap-3">
-            <button onClick={saveDraft} disabled={saving} className="rounded-md bg-brand px-3 py-1.5 text-sm font-bold text-black disabled:opacity-50">
+            <button onClick={saveDraft} disabled={saving} className="rounded-md bg-brand px-3 py-1.5 text-sm font-bold text-white disabled:opacity-50">
               {saving ? "Saving…" : "Save draft"}
             </button>
             {selectedId !== null && (

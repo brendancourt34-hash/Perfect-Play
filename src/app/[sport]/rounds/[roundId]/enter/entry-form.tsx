@@ -161,7 +161,7 @@ export function EntryForm({
         </p>
         <Link
           href={`/${sportSlug}/entries/${result.entryId}`}
-          className="mt-4 inline-block text-xs font-medium text-brand hover:underline"
+          className="mt-4 inline-block text-xs font-medium text-brand-text hover:underline"
         >
           View my entry &rarr;
         </Link>
@@ -221,7 +221,7 @@ export function EntryForm({
             type="button"
             onClick={confirmSubmit}
             disabled={submitting}
-            className="flex-1 rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-brand-strong disabled:opacity-50"
+            className="flex-1 rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-strong disabled:opacity-50"
           >
             {submitting ? "Submitting…" : `Confirm entry — ${formatAudCents(entryFeeCents)}`}
           </button>
@@ -258,7 +258,7 @@ export function EntryForm({
             ) : (
               <label className="mt-3 block">
                 <span className="text-xs font-medium text-muted-2">
-                  {selectionLabel} <span className="text-brand">· {selectionTarget}</span>
+                  {selectionLabel} <span className="text-brand-text">· {selectionTarget}</span>
                 </span>
                 <select
                   required
@@ -314,7 +314,7 @@ export function EntryForm({
       <button
         type="submit"
         disabled={openGames.length === 0}
-        className="w-full rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-brand-strong disabled:opacity-50"
+        className="w-full rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-strong disabled:opacity-50"
       >
         Review entry — {formatAudCents(entryFeeCents)}
       </button>

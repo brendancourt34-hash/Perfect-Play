@@ -15,7 +15,7 @@ export function CustomerSidebar() {
       <Link href="/" className="flex items-center gap-2 px-2">
         <PPMark className="h-8 w-8 rounded-md" />
         <span className="text-sm font-bold tracking-wide">
-          PERFECT <span className="text-brand">PLAY</span>
+          PERFECT <span className="text-brand-text">PLAY</span>
         </span>
       </Link>
 
@@ -31,7 +31,7 @@ export function CustomerSidebar() {
       </nav>
 
       <div className="mt-8 rounded-xl border border-border p-4">
-        <p className="text-lg font-extrabold uppercase italic leading-tight text-brand">
+        <p className="text-lg font-extrabold uppercase italic leading-tight text-brand-text">
           Real fans.
           <br />
           Bigger moments.
@@ -81,7 +81,7 @@ function SidebarLink({
       href={href}
       className={
         active
-          ? "flex items-center gap-3 rounded-lg bg-brand-soft px-3 py-2.5 text-sm font-semibold text-brand"
+          ? "flex items-center gap-3 rounded-lg bg-brand-soft px-3 py-2.5 text-sm font-semibold text-brand-text"
           : "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface-raised"
       }
     >
