@@ -12,6 +12,7 @@ import * as SecureStore from "expo-secure-store";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://localhost:3000";
 const SESSION_TOKEN_KEY = "perfect2_session_token";
+const REQUEST_TIMEOUT_MS = 15_000;
 
 export async function getSessionToken(): Promise<string | null> {
   return SecureStore.getItemAsync(SESSION_TOKEN_KEY);
@@ -35,12 +36,18 @@ async function request<T>(path: string, init?: RequestInit): Promise<ApiResult<T
     ...((init?.headers as Record<string, string>) ?? {}),
   };
 
+  // Hard time limit: without it an unreachable server (dev server not running, wrong
+  // EXPO_PUBLIC_API_URL) left the app frozen on "Loading Perfect Play…" forever.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
   try {
-    const response = await fetch(`${API_URL}${path}`, { ...init, headers });
+    const response = await fetch(`${API_URL}${path}`, { ...init, headers, signal: init?.signal ?? controller.signal });
     const body = await response.json();
     return body as ApiResult<T>;
   } catch {
     return { ok: false, message: "Couldn't reach Perfect Play. Check your connection and try again." };
+  } finally {
+    clearTimeout(timer);
   }
 }
 
