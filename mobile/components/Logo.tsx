@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { colors } from "../constants/theme";
+import { colors, font } from "../constants/theme";
 import { PPMark } from "./PPMark";
 
 const SIZES = {
@@ -31,5 +31,5 @@ export function Logo({ size = "md", withCaption = false }: LogoProps) {
 
 const styles = StyleSheet.create({
   container: { alignItems: "center" },
-  caption: { color: colors.muted, fontWeight: "700", marginTop: 2, textTransform: "uppercase" },
+  caption: { color: colors.muted, fontFamily: font.w700, marginTop: 2, textTransform: "uppercase" },
 });

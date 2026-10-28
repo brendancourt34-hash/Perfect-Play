@@ -10,7 +10,7 @@ import { ProgressBar } from "../../../../components/ProgressBar";
 import { PlayerPickRow } from "../../../../components/PlayerPickRow";
 import { PlayerPickerSheet, type PickablePlayer } from "../../../../components/PlayerPickerSheet";
 import { EmptyState, ErrorState, LoadingState } from "../../../../components/ScreenStates";
-import { colors, spacing, typography } from "../../../../constants/theme";
+import { colors, spacing, typography, font } from "../../../../constants/theme";
 import { formatSelectionTarget } from "../../../../lib/format";
 
 type PickerTarget = { gameId: number } | null;
@@ -66,7 +66,9 @@ export default function EnterPicksScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Build your PERFECT ROUND</Text>
+        <Text style={styles.headerTitle}>
+          Build your <Text style={styles.headerAccent}>perfect</Text> round
+        </Text>
         <Text style={styles.headerSubtitle}>{sport.pickLabel} Get every pick right to go PERFECT.</Text>
       </View>
       {openGames.length > 0 && <ProgressBar label={`${complete}/${openGames.length} games complete`} complete={complete} total={openGames.length} />}
@@ -78,7 +80,7 @@ export default function EnterPicksScreen() {
           data={openGames}
           keyExtractor={(g) => String(g.id)}
           contentContainerStyle={styles.list}
-          renderItem={({ item: game }) => {
+          renderItem={({ item: game, index }) => {
             const gameComplete = isGameComplete(game.id);
             const player = findPlayer(game.id, picks[game.id]);
             const roleNoun = roundDetail.selectionLabel;
@@ -86,7 +88,7 @@ export default function EnterPicksScreen() {
             return (
               <Card style={styles.gameCard} highlighted={gameComplete}>
                 <Text style={styles.matchup}>
-                  {game.homeTeam.name} vs {game.awayTeam.name}
+                  {index + 1} · {game.homeTeam.name} vs {game.awayTeam.name}
                 </Text>
                 <Text style={styles.pickPrompt}>
                   {roleNoun} · <Text style={styles.pickTarget}>{target}</Text>
@@ -105,7 +107,7 @@ export default function EnterPicksScreen() {
 
       <View style={styles.footer}>
         <Button
-          label={allComplete ? "Review picks" : `Complete all games (${complete}/${openGames.length})`}
+          label={allComplete ? "Review entry »" : `Pick all games (${complete}/${openGames.length})`}
           disabled={!allComplete}
           onPress={() => router.push(`/round/${sportSlug}/${roundId}/review`)}
         />
@@ -133,12 +135,13 @@ export default function EnterPicksScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
   header: { paddingHorizontal: spacing.lg, paddingTop: spacing.md, paddingBottom: spacing.xs },
-  headerTitle: { ...typography.subheading, color: colors.foreground },
-  headerSubtitle: { color: colors.muted, fontSize: 12, marginTop: 2 },
-  list: { paddingHorizontal: spacing.lg, paddingBottom: spacing.xl, gap: spacing.md },
+  headerTitle: { ...typography.title, color: colors.foreground },
+  headerAccent: { color: colors.brandText },
+  headerSubtitle: { color: colors.muted, fontSize: 13, fontFamily: font.w500, marginTop: 4 },
+  list: { paddingHorizontal: spacing.lg, paddingBottom: spacing.xl, gap: spacing.sm },
   gameCard: { gap: spacing.sm },
-  matchup: { ...typography.subheading, color: colors.foreground },
+  matchup: { ...typography.heading, fontSize: 20, color: colors.foreground },
   pickPrompt: { color: colors.muted, fontSize: 12, marginBottom: spacing.xs },
-  pickTarget: { color: colors.brand, fontWeight: "700" },
+  pickTarget: { color: colors.brandText, fontFamily: font.w700 },
   footer: { padding: spacing.lg, borderTopWidth: 1, borderTopColor: colors.border, backgroundColor: colors.background },
 });

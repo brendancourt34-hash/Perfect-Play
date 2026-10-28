@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Card } from "./Card";
 import { GameStatusBadge, type GameStatus } from "./StatusBadge";
-import { colors, spacing } from "../constants/theme";
+import { colors, spacing, font } from "../constants/theme";
 
 interface GameCardProps {
   homeTeamName: string;
@@ -35,8 +35,8 @@ export function GameCard({ homeTeamName, awayTeamName, homeScore, awayScore, kic
 const styles = StyleSheet.create({
   card: { gap: spacing.xs },
   row: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
-  teamName: { color: colors.foreground, fontSize: 15, fontWeight: "600" },
-  score: { color: colors.muted, fontSize: 14, fontVariant: ["tabular-nums"] },
+  teamName: { color: colors.foreground, fontSize: 19, fontFamily: font.display, textTransform: "uppercase" },
+  score: { color: colors.foreground, fontSize: 20, fontFamily: font.display, fontVariant: ["tabular-nums"] },
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",

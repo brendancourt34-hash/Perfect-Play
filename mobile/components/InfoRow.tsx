@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { colors, spacing } from "../constants/theme";
+import { colors, spacing, font } from "../constants/theme";
 
 interface InfoRowProps {
   label: string;
@@ -21,6 +21,6 @@ export function InfoRow({ label, value, emphasize }: InfoRowProps) {
 const styles = StyleSheet.create({
   row: { flexDirection: "row", justifyContent: "space-between" },
   label: { color: colors.muted, fontSize: 13 },
-  value: { color: colors.foreground, fontSize: 13, fontWeight: "700" },
-  valueEmphasized: { color: colors.brand },
+  value: { color: colors.foreground, fontSize: 13, fontFamily: font.w700 },
+  valueEmphasized: { color: colors.brandText },
 });

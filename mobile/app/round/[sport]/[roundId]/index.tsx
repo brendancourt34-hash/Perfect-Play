@@ -70,7 +70,7 @@ export default function RoundDetailScreen() {
   const header = detail && (
     <View style={styles.header}>
       <Text style={styles.title}>
-        {sport.name} — {detail.round.name ?? `Round ${detail.round.roundNumber}`}
+        {sport.name} — {`Round ${detail.round.roundNumber}`}
       </Text>
       <View style={styles.badgeRow}>
         <CompetitionStateBadge state={detail.competition.state} />

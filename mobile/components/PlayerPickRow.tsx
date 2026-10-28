@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { colors, minTouchTarget, radius, spacing } from "../constants/theme";
+import { colors, minTouchTarget, radius, spacing, font } from "../constants/theme";
 
 interface PlayerPickRowProps {
   label: string;
@@ -11,7 +11,7 @@ interface PlayerPickRowProps {
 /** One "Select player" slot inside a game's pick card on the Enter Picks screen. */
 export function PlayerPickRow({ label, player, accessibilityLabel, onPress }: PlayerPickRowProps) {
   return (
-    <Pressable style={styles.row} accessibilityRole="button" accessibilityLabel={accessibilityLabel} onPress={onPress}>
+    <Pressable style={[styles.row, player && styles.rowPicked]} accessibilityRole="button" accessibilityLabel={accessibilityLabel} onPress={onPress}>
       <Text style={styles.label}>{label}</Text>
       {player ? (
         <View>
@@ -37,8 +37,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     justifyContent: "center",
   },
-  label: { color: colors.muted2, fontSize: 11, fontWeight: "700", textTransform: "uppercase", marginBottom: 2 },
-  placeholder: { color: colors.muted, fontSize: 15, minHeight: minTouchTarget - 24 },
-  name: { color: colors.brand, fontSize: 15, fontWeight: "700" },
+  rowPicked: { borderLeftWidth: 4, borderLeftColor: colors.brand },
+  label: { color: colors.muted, fontSize: 11, fontFamily: font.w700, textTransform: "uppercase", marginBottom: 2 },
+  placeholder: { color: colors.foreground, fontFamily: font.w600, fontSize: 15, minHeight: minTouchTarget - 24 },
+  name: { color: colors.foreground, fontSize: 16, fontFamily: font.w700 },
   meta: { color: colors.muted, fontSize: 12, marginTop: 1 },
 });

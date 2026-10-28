@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import * as api from "../lib/api";
 import { ErrorState, LoadingState } from "../components/ScreenStates";
-import { colors, spacing, typography } from "../constants/theme";
+import { colors, spacing, typography, font } from "../constants/theme";
 import { formatAuDate } from "../lib/format";
 
 /**
@@ -84,6 +84,6 @@ const styles = StyleSheet.create({
   section: { borderBottomWidth: 1, borderBottomColor: colors.border, paddingBottom: spacing.sm },
   sectionHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingVertical: spacing.sm },
   sectionHeading: { ...typography.bodyStrong, color: colors.foreground, flex: 1, paddingRight: spacing.sm },
-  sectionToggle: { color: colors.brand, fontSize: 18, fontWeight: "800" },
+  sectionToggle: { color: colors.brandText, fontSize: 18, fontFamily: font.w800 },
   sectionBody: { color: colors.muted, fontSize: 13, lineHeight: 19, marginTop: spacing.xs },
 });

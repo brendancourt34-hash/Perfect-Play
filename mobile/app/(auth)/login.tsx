@@ -6,7 +6,7 @@ import { Button } from "../../components/Button";
 import { TextField } from "../../components/TextField";
 import { Logo } from "../../components/Logo";
 import { Screen } from "../../components/Screen";
-import { colors, spacing } from "../../constants/theme";
+import { colors, spacing, font } from "../../constants/theme";
 
 export default function LoginScreen() {
   const { login } = useAuth();
@@ -79,5 +79,5 @@ const styles = StyleSheet.create({
   form: { gap: spacing.xs },
   error: { color: colors.foreground, fontSize: 13, marginTop: spacing.md },
   link: { marginTop: spacing.lg, alignSelf: "center" },
-  linkText: { color: colors.brand, fontSize: 14, fontWeight: "600" },
+  linkText: { color: colors.brandText, fontSize: 14, fontFamily: font.w600 },
 });

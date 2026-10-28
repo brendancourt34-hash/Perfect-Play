@@ -1,5 +1,5 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text, type PressableProps, type StyleProp, type ViewStyle } from "react-native";
-import { colors, minTouchTarget, radius, spacing } from "../constants/theme";
+import { colors, minTouchTarget, radius, spacing, font } from "../constants/theme";
 
 interface ButtonProps extends Omit<PressableProps, "style"> {
   label: string;
@@ -28,7 +28,7 @@ export function Button({ label, variant = "primary", loading, disabled, style, .
       {...props}
     >
       {loading ? (
-        <ActivityIndicator color={variant === "primary" ? colors.onBrand : colors.brand} />
+        <ActivityIndicator color={variant === "primary" ? colors.onBrand : colors.brandText} />
       ) : (
         <Text
           style={[
@@ -47,7 +47,7 @@ export function Button({ label, variant = "primary", loading, disabled, style, .
 
 const styles = StyleSheet.create({
   base: {
-    minHeight: minTouchTarget + 4,
+    minHeight: minTouchTarget + 10,
     borderRadius: radius.pill,
     alignItems: "center",
     justifyContent: "center",
@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   primary: { backgroundColor: colors.brand },
-  secondary: { backgroundColor: "transparent", borderWidth: 1.5, borderColor: colors.borderStrong },
+  secondary: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.borderStrong },
   ghost: { backgroundColor: "transparent" },
   disabled: { opacity: 0.4 },
   pressed: { opacity: 0.85 },
-  label: { fontSize: 15, fontWeight: "800", letterSpacing: 0.2 },
+  label: { fontSize: 20, fontFamily: font.display, letterSpacing: 0.5, textTransform: "uppercase" },
   labelPrimary: { color: colors.onBrand },
   labelSecondary: { color: colors.foreground },
-  labelGhost: { color: colors.brand },
+  labelGhost: { color: colors.brandText },
 });

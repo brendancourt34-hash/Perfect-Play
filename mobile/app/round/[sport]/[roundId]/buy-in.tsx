@@ -9,7 +9,7 @@ import { Logo } from "../../../../components/Logo";
 import { SectionLabel } from "../../../../components/SectionLabel";
 import { CompetitionStateBadge } from "../../../../components/StatusBadge";
 import { ErrorState, LoadingState } from "../../../../components/ScreenStates";
-import { colors, spacing, typography } from "../../../../constants/theme";
+import { colors, spacing, typography, font } from "../../../../constants/theme";
 import { formatAudCents } from "../../../../lib/format";
 
 /**
@@ -65,7 +65,7 @@ export default function BuyInScreen() {
   if (!roundDetail) return null;
 
   const { competition, round } = roundDetail;
-  const roundLabel = round.name ?? `Round ${round.roundNumber}`;
+  const roundLabel = `Round ${round.roundNumber}`;
   const tagline = `${sport.pickLabel} Get every pick right to go PERFECT.`;
   const entryCount = myEntries?.length ?? 0;
   const atCap = entryCount >= maxEntries;
@@ -73,7 +73,7 @@ export default function BuyInScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.brand}>
-        <Logo size="md" />
+        <Logo size="sm" />
       </View>
 
       <Text style={styles.sportName}>{sport.name}</Text>
@@ -92,7 +92,7 @@ export default function BuyInScreen() {
         </View>
       ) : competition.state !== "open" ? (
         <View style={styles.card}>
-          <View style={{ alignSelf: "center", marginBottom: spacing.sm }}>
+          <View style={{ marginBottom: spacing.sm }}>
             <CompetitionStateBadge state={competition.state} />
           </View>
           <Text style={styles.stateTitle}>
@@ -126,7 +126,7 @@ export default function BuyInScreen() {
             style={{ marginTop: spacing.lg }}
           />
           <Text style={styles.howItWorksLink} onPress={() => router.push("/how-it-works")}>
-            How does this work?
+            How does this work? »
           </Text>
         </View>
       )}
@@ -135,15 +135,15 @@ export default function BuyInScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.background, padding: spacing.xl, alignItems: "center", justifyContent: "center" },
-  brand: { marginBottom: spacing.xl },
-  sportName: { ...typography.display, color: colors.foreground, textAlign: "center" },
-  roundName: { ...typography.overline, color: colors.brand, textAlign: "center", marginTop: spacing.xs },
-  tagline: { color: colors.muted, textAlign: "center", marginTop: spacing.lg, fontSize: 15, lineHeight: 22 },
-  card: { width: "100%", alignItems: "center", marginTop: spacing.xxl },
-  price: { fontSize: 40, fontWeight: "800", color: colors.foreground },
-  entryCountNote: { color: colors.muted, fontSize: 13, marginTop: spacing.xs },
+  container: { flex: 1, backgroundColor: colors.background, padding: spacing.xl, justifyContent: "center" },
+  brand: { marginBottom: spacing.xl, alignItems: "flex-start" },
+  sportName: { ...typography.display, fontSize: 64, lineHeight: 62, color: colors.foreground },
+  roundName: { color: colors.brandText, fontFamily: font.display, fontSize: 26, textTransform: "uppercase" },
+  tagline: { color: colors.muted, marginTop: spacing.md, fontSize: 15, lineHeight: 22, fontFamily: font.w500 },
+  card: { width: "100%", marginTop: spacing.xxl, paddingTop: spacing.lg, borderTopWidth: 4, borderTopColor: colors.brand },
+  price: { fontSize: 48, lineHeight: 50, fontFamily: font.display, color: colors.foreground, textTransform: "uppercase" },
+  entryCountNote: { color: colors.muted, fontSize: 13, marginTop: spacing.xs, fontFamily: font.w500 },
   stateTitle: { ...typography.heading, color: colors.foreground, marginBottom: spacing.xs },
-  stateBody: { color: colors.muted, textAlign: "center", fontSize: 14, lineHeight: 20 },
-  howItWorksLink: { color: colors.muted, fontSize: 13, fontWeight: "600", textAlign: "center", marginTop: spacing.lg, textDecorationLine: "underline" },
+  stateBody: { color: colors.muted, fontSize: 14, lineHeight: 20, fontFamily: font.w500 },
+  howItWorksLink: { color: colors.brandText, fontSize: 14, fontFamily: font.w600, marginTop: spacing.lg },
 });

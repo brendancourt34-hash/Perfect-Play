@@ -18,7 +18,7 @@ export function MomentsList({ moments }: { moments: PerfectPlayMoment[] }) {
     <View style={styles.list}>
       {moments.map((moment) => (
         <Card key={moment.id} style={styles.card}>
-          <Icon name="bell" size={16} color={colors.brand} />
+          <Icon name="bell" size={16} color={colors.brandText} />
           <Text style={styles.message}>{moment.message}</Text>
           {!moment.readAt && <View style={styles.unreadDot} accessibilityLabel="Unread" />}
         </Card>

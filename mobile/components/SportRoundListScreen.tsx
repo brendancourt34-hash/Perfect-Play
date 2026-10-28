@@ -84,7 +84,7 @@ export function SportRoundListScreen({ sportSlug, withTopInset = true }: { sport
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={colors.brand} />}
           renderItem={({ item }) => (
             <RoundListItem
-              title={item.name ?? `Round ${item.roundNumber}`}
+              title={`Round ${item.roundNumber}`}
               state={item.competition?.state ?? null}
               dateLine={dateLine(item)}
               feeLine={feeLine(item)}

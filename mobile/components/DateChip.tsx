@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { colors, radius, spacing } from "../constants/theme";
+import { colors, radius, spacing, font } from "../constants/theme";
 
 /** Small bordered day/month chip — e.g. "12" over "AUG" — used on upcoming-competition rows. */
 export function DateChip({ date }: { date: Date }) {
@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 4,
   },
-  day: { color: colors.foreground, fontSize: 13, fontWeight: "800", lineHeight: 15 },
-  month: { color: colors.muted2, fontSize: 8, fontWeight: "800", marginTop: 1 },
+  day: { color: colors.foreground, fontSize: 13, fontFamily: font.w800, lineHeight: 15 },
+  month: { color: colors.muted2, fontSize: 8, fontFamily: font.w800, marginTop: 1 },
 });

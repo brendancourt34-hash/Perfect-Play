@@ -7,8 +7,8 @@ import { Button } from "../../components/Button";
 import { InfoRow } from "../../components/InfoRow";
 import { ScreenHeader } from "../../components/ScreenHeader";
 import { Screen } from "../../components/Screen";
-import { ErrorState, LoadingState } from "../../components/ScreenStates";
-import { colors, radius, spacing, typography } from "../../constants/theme";
+import { ErrorState } from "../../components/ScreenStates";
+import { colors, radius, spacing, typography, font } from "../../constants/theme";
 import { formatAudCents } from "../../lib/format";
 
 const PRESET_AMOUNTS_CENTS = [500, 1000, 2000, 5000];
@@ -129,7 +129,7 @@ export default function WalletScreen() {
     }
   }
 
-  if (balanceCents === null && !error) return <LoadingState label="Loading your balance…" />;
+  // No full-screen spinner: the page renders straight away and the balance fills in.
   if (error) return <ErrorState message={error} onRetry={load} />;
 
   return (
@@ -144,7 +144,7 @@ export default function WalletScreen() {
             <Text style={styles.subtitle}>Add funds and view your transaction history.</Text>
             <Card style={styles.balanceCard}>
               <Text style={styles.balanceLabel}>Current balance</Text>
-              <Text style={styles.balanceValue}>{formatAudCents(balanceCents ?? 0)}</Text>
+              <Text style={styles.balanceValue}>{balanceCents === null ? "—" : formatAudCents(balanceCents)}</Text>
             </Card>
 
             <Text style={styles.sectionTitle}>Add funds</Text>
@@ -247,9 +247,9 @@ const styles = StyleSheet.create({
   list: { paddingHorizontal: spacing.lg, paddingTop: spacing.sm, paddingBottom: spacing.xl, gap: spacing.md },
   headerContent: { gap: spacing.md, marginBottom: spacing.sm },
   subtitle: { color: colors.muted, fontSize: 14 },
-  balanceCard: { alignItems: "center", gap: spacing.xs },
-  balanceLabel: { color: colors.muted, fontSize: 13 },
-  balanceValue: { ...typography.display, color: colors.brand },
+  balanceCard: { gap: spacing.xs, borderTopWidth: 4, borderTopColor: colors.brand },
+  balanceLabel: { color: colors.muted, fontSize: 11, fontFamily: font.w700, letterSpacing: 1.4, textTransform: "uppercase" },
+  balanceValue: { ...typography.display, fontSize: 56, lineHeight: 58, color: colors.foreground },
   sectionTitle: { ...typography.subheading, color: colors.foreground, marginTop: spacing.md },
   presetRow: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
   presetButton: { flexGrow: 1, minWidth: "45%" },
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
   customButton: { paddingHorizontal: spacing.lg },
   termsGate: { backgroundColor: colors.neutralSoft, borderWidth: 1, borderColor: colors.neutralBorder, borderRadius: 10, padding: spacing.md, gap: spacing.sm },
   termsGateText: { color: colors.foreground, fontSize: 13, lineHeight: 18, flex: 1 },
-  addFundsLink: { color: colors.brand, fontWeight: "700", textDecorationLine: "underline" },
+  addFundsLink: { color: colors.brandText, fontFamily: font.w700, textDecorationLine: "underline" },
   termsRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm },
   checkbox: {
     width: 20,
@@ -280,13 +280,13 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   checkboxChecked: { backgroundColor: colors.brand, borderColor: colors.brand },
-  checkboxMark: { color: colors.onBrand, fontSize: 13, fontWeight: "800" },
+  checkboxMark: { color: colors.onBrand, fontSize: 13, fontFamily: font.w800 },
   withdrawNote: { color: colors.muted, fontSize: 12, lineHeight: 17 },
   withdrawalsList: { gap: spacing.xs, marginTop: spacing.xs },
   withdrawalRow: { flexDirection: "row", justifyContent: "space-between", paddingVertical: spacing.xs, borderBottomWidth: 1, borderBottomColor: colors.border },
-  withdrawalAmount: { color: colors.foreground, fontSize: 13, fontWeight: "700" },
+  withdrawalAmount: { color: colors.foreground, fontSize: 13, fontFamily: font.w700 },
   withdrawalStatus: { color: colors.muted, fontSize: 12, textTransform: "capitalize" },
-  successText: { color: colors.brand, fontSize: 13, backgroundColor: colors.brandSoft, borderRadius: 10, padding: spacing.sm },
+  successText: { color: colors.brandText, fontSize: 13, backgroundColor: colors.brandSoft, borderRadius: 10, padding: spacing.sm },
   errorText: { color: colors.foreground, fontSize: 13, backgroundColor: colors.neutralSoft, borderRadius: 10, padding: spacing.sm },
   emptyText: { color: colors.muted, fontSize: 14, textAlign: "center", paddingVertical: spacing.lg },
   txCard: { gap: spacing.xs },

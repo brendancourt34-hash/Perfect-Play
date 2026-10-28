@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { colors, spacing } from "../constants/theme";
+import { colors, spacing, font } from "../constants/theme";
 import { SelectionBadge, type ResultLabelOverrides, type SelectionResult } from "./StatusBadge";
 
 interface ResultRowProps {
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
     padding: spacing.md,
     gap: spacing.sm,
   },
-  name: { color: colors.foreground, fontSize: 14, fontWeight: "600" },
+  name: { color: colors.foreground, fontSize: 14, fontFamily: font.w600 },
   stat: { color: colors.muted2, fontSize: 12, marginTop: 2 },
 });

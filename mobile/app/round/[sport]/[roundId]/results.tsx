@@ -8,7 +8,7 @@ import { SectionLabel } from "../../../../components/SectionLabel";
 import { CompetitionStateBadge } from "../../../../components/StatusBadge";
 import { Icon } from "../../../../components/icons";
 import { EmptyState, ErrorState, LoadingState } from "../../../../components/ScreenStates";
-import { colors, spacing, typography } from "../../../../constants/theme";
+import { colors, spacing, typography, font } from "../../../../constants/theme";
 import { formatAudCents } from "../../../../lib/format";
 
 export default function ResultsScreen() {
@@ -53,7 +53,7 @@ export default function ResultsScreen() {
       {/* No entrant count, live turnover, or live payout estimate is ever shown here —
           only the Prize Pool state itself until the competition actually settles. */}
       <Card style={styles.prizeCard}>
-        <Icon name="trophy" size={20} color={colors.brand} />
+        <Icon name="trophy" size={20} color={colors.brandText} />
         <View style={{ flex: 1 }}>
           <Text style={styles.prizeLabel}>Prize Pool</Text>
           <Text style={styles.prizeValue}>{results.currentPrizePoolCents !== null ? formatAudCents(results.currentPrizePoolCents) : sport.revealPhrase}</Text>
@@ -85,7 +85,7 @@ export default function ResultsScreen() {
           <View style={{ gap: spacing.sm, marginTop: spacing.sm }}>
             {results.perfectEntryIds.map((id) => (
               <View key={id} style={styles.winnerRow}>
-                <Icon name="trophy" size={14} color={colors.brand} />
+                <Icon name="trophy" size={14} color={colors.brandText} />
                 <Text style={styles.winnerText}>Entry #{id}</Text>
               </View>
             ))}
@@ -102,11 +102,11 @@ const styles = StyleSheet.create({
   title: { ...typography.title, fontSize: 24, color: colors.foreground },
   prizeCard: { flexDirection: "row", alignItems: "center", gap: spacing.md, marginTop: spacing.sm },
   prizeLabel: { color: colors.muted, fontSize: 14 },
-  prizeValue: { color: colors.foreground, fontSize: 20, fontWeight: "800" },
+  prizeValue: { color: colors.foreground, fontSize: 20, fontFamily: font.w800 },
   wonCard: { marginTop: spacing.sm, borderColor: colors.brandBorder, backgroundColor: colors.brandSoft },
-  wonTitle: { color: colors.brand, fontSize: 20, fontWeight: "800", textTransform: "uppercase" },
-  wonSubtitle: { color: colors.brand, fontSize: 13, marginTop: 2 },
-  wonAmount: { color: colors.brand, fontSize: 24, fontWeight: "800", marginTop: 4 },
+  wonTitle: { color: colors.brandText, fontSize: 20, fontFamily: font.w800, textTransform: "uppercase" },
+  wonSubtitle: { color: colors.brandText, fontSize: 13, marginTop: 2 },
+  wonAmount: { color: colors.brandText, fontSize: 24, fontFamily: font.w800, marginTop: 4 },
   mutedText: { color: colors.muted, fontSize: 14, lineHeight: 20 },
   winnerRow: {
     flexDirection: "row",
@@ -118,5 +118,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: spacing.md,
   },
-  winnerText: { color: colors.brand, fontSize: 14, fontWeight: "700" },
+  winnerText: { color: colors.brandText, fontSize: 14, fontFamily: font.w700 },
 });

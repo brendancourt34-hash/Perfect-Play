@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Card } from "./Card";
 import { Button } from "./Button";
 import { CompetitionStateBadge, type CompetitionState } from "./StatusBadge";
-import { colors, radius, spacing, typography } from "../constants/theme";
+import { colors, spacing, font } from "../constants/theme";
 import { formatAudCents } from "../lib/format";
 import type { SPORTS } from "../constants/sports";
 
@@ -42,12 +42,9 @@ export function CompetitionCard({
   return (
     <Card style={styles.card} highlighted>
       <View style={styles.headerRow}>
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>{sport.code.toUpperCase()}</Text>
-        </View>
         <View style={styles.headerText}>
           <Text style={styles.title}>
-            {sport.name} — {roundLabel}
+            {sport.name} · {roundLabel}
           </Text>
           <Text style={styles.subtitle}>
             {gamesCount} {gamesCount === 1 ? "game" : "games"}
@@ -65,47 +62,27 @@ export function CompetitionCard({
           ) : (
             <View style={styles.revealPill}>
               <Text style={styles.revealPillText} numberOfLines={2}>
-                {sport.revealPhrase.toUpperCase()}
+                {sport.revealPhrase}
               </Text>
             </View>
           )}
         </View>
-        <Button label={ctaLabel} onPress={onPress} style={styles.cta} />
       </View>
+      <Button label={`${ctaLabel} »`} onPress={onPress} style={styles.cta} />
     </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  card: { gap: spacing.md, padding: spacing.md },
-  headerRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm },
-  badge: {
-    width: 40,
-    height: 40,
-    borderRadius: radius.md,
-    backgroundColor: colors.brandSoft,
-    borderWidth: 1,
-    borderColor: colors.brandBorder,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  badgeText: { color: colors.brand, fontWeight: "800", fontSize: 11 },
+  card: { gap: spacing.md, padding: 0, paddingTop: spacing.md, borderTopWidth: 4, borderTopColor: colors.brand, borderColor: colors.border },
+  headerRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm, paddingHorizontal: spacing.lg },
   headerText: { flex: 1, minWidth: 0 },
-  title: { ...typography.subheading, color: colors.foreground },
-  subtitle: { color: colors.muted, fontSize: 12, marginTop: 2 },
-  footerRow: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between", gap: spacing.md },
-  prizeLabel: { color: colors.muted, fontSize: 11, textTransform: "uppercase", letterSpacing: 0.5 },
-  prizeValue: { fontSize: 24, fontWeight: "800", color: colors.brand, marginTop: 2 },
-  revealPill: {
-    marginTop: 4,
-    alignSelf: "flex-start",
-    borderRadius: radius.sm,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surfaceRaised,
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 5,
-  },
-  revealPillText: { color: colors.muted, fontSize: 10, fontWeight: "800", letterSpacing: 0.3 },
-  cta: { paddingHorizontal: spacing.lg },
+  title: { color: colors.foreground, fontFamily: font.display, fontSize: 24, textTransform: "uppercase" },
+  subtitle: { color: colors.muted, fontSize: 13, fontFamily: font.w500, marginTop: 2 },
+  footerRow: { paddingHorizontal: spacing.lg },
+  prizeLabel: { color: colors.muted, fontSize: 11, fontFamily: font.w700, textTransform: "uppercase", letterSpacing: 1.4 },
+  prizeValue: { fontSize: 26, fontFamily: font.display, color: colors.brandText, marginTop: 2 },
+  revealPill: { marginTop: 2 },
+  revealPillText: { color: colors.foreground, fontSize: 20, fontFamily: font.display, textTransform: "uppercase" },
+  cta: { alignSelf: "stretch" },
 });

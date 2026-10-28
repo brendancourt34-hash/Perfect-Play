@@ -9,7 +9,7 @@ import { ScreenHeader } from "../../components/ScreenHeader";
 import { EmptyState, ErrorState, LoadingState } from "../../components/ScreenStates";
 import { Icon } from "../../components/icons";
 import { Screen } from "../../components/Screen";
-import { colors, radius, spacing, typography } from "../../constants/theme";
+import { colors, radius, spacing, typography, font } from "../../constants/theme";
 import { formatAudCents, formatStatLabel } from "../../lib/format";
 
 /**
@@ -150,23 +150,23 @@ function EntryGroupCard({ group, latestMoment, onPressEntry }: { group: api.MyEn
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
   list: { paddingHorizontal: spacing.lg, paddingBottom: spacing.xxl, gap: spacing.md },
-  groupCard: { gap: spacing.md },
+  groupCard: { gap: spacing.md, borderTopWidth: 4, borderTopColor: colors.brand },
   groupHeader: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm },
   sportLine: { ...typography.label, color: colors.muted2, textTransform: "uppercase" },
   entryCountRow: { flexDirection: "row", alignItems: "center", gap: spacing.sm, marginTop: 4 },
   entryCountText: { ...typography.heading, color: colors.foreground },
-  samePicksBadge: { borderWidth: 1, borderColor: colors.brandBorder, backgroundColor: colors.brandSoft, borderRadius: radius.pill, paddingHorizontal: 8, paddingVertical: 2 },
-  samePicksText: { color: colors.brand, fontSize: 10, fontWeight: "800", letterSpacing: 0.5 },
-  momentText: { color: colors.brand, fontSize: 11, fontWeight: "700", marginTop: 6 },
-  wonBox: { borderWidth: 1, borderColor: colors.brandBorder, backgroundColor: colors.brandSoft, borderRadius: radius.md, padding: spacing.md },
-  wonTitle: { color: colors.brand, fontSize: 18, fontWeight: "800", textTransform: "uppercase" },
-  wonSubtitle: { color: colors.brand, fontSize: 12, marginTop: 2 },
-  wonAmount: { color: colors.brand, fontSize: 22, fontWeight: "800", marginTop: 4 },
+  samePicksBadge: { borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surfaceRaised, paddingHorizontal: 8, paddingVertical: 2 },
+  samePicksText: { color: colors.muted, fontSize: 10, fontFamily: font.w700, letterSpacing: 0.6 },
+  momentText: { color: colors.brandText, fontSize: 11, fontFamily: font.w700, marginTop: 6 },
+  wonBox: { backgroundColor: colors.brand, padding: spacing.md },
+  wonTitle: { color: colors.onBrand, fontSize: 26, fontFamily: font.display, textTransform: "uppercase" },
+  wonSubtitle: { color: colors.onBrand, fontSize: 12, fontFamily: font.w500, marginTop: 2 },
+  wonAmount: { color: colors.onBrand, fontSize: 34, fontFamily: font.display, marginTop: 4 },
   picksSection: { gap: spacing.sm },
   sectionLabel: { ...typography.label, color: colors.muted2, textTransform: "uppercase", marginBottom: 2 },
-  pickRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", backgroundColor: colors.surfaceRaised, borderRadius: 10, padding: spacing.md, gap: spacing.sm },
-  gameLabel: { color: colors.muted2, fontSize: 11, fontWeight: "700" },
-  playerName: { color: colors.foreground, fontSize: 14, fontWeight: "600", marginTop: 2 },
+  pickRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", backgroundColor: colors.surfaceRaised, padding: spacing.md, gap: spacing.sm },
+  gameLabel: { color: colors.muted, fontSize: 13, fontFamily: font.displayBold, textTransform: "uppercase" },
+  playerName: { color: colors.foreground, fontSize: 14, fontFamily: font.w600, marginTop: 2 },
   statLine: { color: colors.muted2, fontSize: 12, marginTop: 2 },
   entryIdsSection: { gap: spacing.xs },
   entryIdsRow: { flexDirection: "row", flexWrap: "wrap", gap: spacing.xs },
@@ -181,5 +181,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 6,
   },
-  entryIdText: { color: colors.muted, fontSize: 12, fontWeight: "600" },
+  entryIdText: { color: colors.muted, fontSize: 12, fontFamily: font.w600 },
 });

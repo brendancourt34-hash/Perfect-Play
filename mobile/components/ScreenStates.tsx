@@ -1,12 +1,12 @@
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import { colors, spacing } from "../constants/theme";
+import { colors, spacing, font } from "../constants/theme";
 import { Button } from "./Button";
 import { Icon } from "./icons";
 
 export function LoadingState({ label = "Loading…" }: { label?: string }) {
   return (
     <View style={styles.center} accessibilityRole="progressbar" accessibilityLabel={label}>
-      <ActivityIndicator color={colors.brand} size="large" />
+      <ActivityIndicator color={colors.brandText} size="large" />
       <Text style={styles.mutedText}>{label}</Text>
     </View>
   );
@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xs,
   },
   mutedText: { color: colors.muted, fontSize: 14, textAlign: "center" },
-  errorTitle: { color: colors.foreground, fontSize: 16, fontWeight: "700" },
-  emptyTitle: { color: colors.foreground, fontSize: 16, fontWeight: "700", textAlign: "center" },
+  errorTitle: { color: colors.foreground, fontSize: 16, fontFamily: font.w700 },
+  emptyTitle: { color: colors.foreground, fontSize: 16, fontFamily: font.w700, textAlign: "center" },
 });

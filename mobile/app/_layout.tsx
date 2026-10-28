@@ -1,11 +1,21 @@
 import { useEffect } from "react";
+import { View } from "react-native";
 import { Stack } from "expo-router";
+import { useFonts } from "expo-font";
+import {
+  Saira_400Regular,
+  Saira_500Medium,
+  Saira_600SemiBold,
+  Saira_700Bold,
+  Saira_800ExtraBold,
+} from "@expo-google-fonts/saira";
+import { SairaCondensed_700Bold, SairaCondensed_800ExtraBold } from "@expo-google-fonts/saira-condensed";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider, useAuth } from "../lib/auth-context";
 import { handleInitialPushNavigation, setupPushNotificationListeners } from "../lib/push-notifications";
 import { LoadingState } from "../components/ScreenStates";
-import { colors } from "../constants/theme";
+import { colors, font } from "../constants/theme";
 
 function RootNavigator() {
   const { bootstrapping } = useAuth();
@@ -38,6 +48,7 @@ function RootNavigator() {
           headerStyle: { backgroundColor: colors.background },
           headerTintColor: colors.foreground,
           headerShadowVisible: false,
+          headerTitleStyle: { fontFamily: font.display, fontSize: 20 },
         }}
       />
       <Stack.Screen
@@ -48,6 +59,7 @@ function RootNavigator() {
           headerStyle: { backgroundColor: colors.background },
           headerTintColor: colors.foreground,
           headerShadowVisible: false,
+          headerTitleStyle: { fontFamily: font.display, fontSize: 20 },
         }}
       />
     </Stack>
@@ -55,6 +67,19 @@ function RootNavigator() {
 }
 
 export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({
+    Saira_400Regular,
+    Saira_500Medium,
+    Saira_600SemiBold,
+    Saira_700Bold,
+    Saira_800ExtraBold,
+    SairaCondensed_700Bold,
+    SairaCondensed_800ExtraBold,
+  });
+  // Render nothing for the few ms the bundled fonts take to register; on a load error we
+  // fall through and the system font is used rather than blocking the app.
+  if (!fontsLoaded && !fontError) return <View style={{ flex: 1, backgroundColor: colors.background }} />;
+
   return (
     <SafeAreaProvider>
       <AuthProvider>

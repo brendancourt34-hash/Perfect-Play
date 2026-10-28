@@ -7,7 +7,7 @@ import { Button } from "../../components/Button";
 import { ScreenHeader } from "../../components/ScreenHeader";
 import { Logo } from "../../components/Logo";
 import { Screen } from "../../components/Screen";
-import { colors, spacing } from "../../constants/theme";
+import { colors, spacing, font } from "../../constants/theme";
 
 /**
  * The "More" tab — account info plus everything that doesn't have its own bottom-nav
@@ -27,7 +27,7 @@ export default function AccountScreen() {
 
   return (
     <Screen style={styles.container}>
-      <ScreenHeader title="More" />
+      <ScreenHeader title="Account" />
 
       <Card style={styles.userCard}>
         <Logo size="sm" />
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background, paddingHorizontal: spacing.lg, gap: spacing.lg },
   userCard: { flexDirection: "row", alignItems: "center", gap: spacing.lg },
   userInfo: { gap: 2 },
-  email: { color: colors.foreground, fontSize: 16, fontWeight: "700" },
+  email: { color: colors.foreground, fontSize: 16, fontFamily: font.w700 },
   name: { color: colors.muted, fontSize: 13 },
   logoutButton: { marginTop: spacing.sm },
   footnote: { color: colors.muted2, fontSize: 12, textAlign: "center", marginTop: "auto", marginBottom: spacing.xl },

@@ -83,8 +83,19 @@ export interface RoundSummary {
   } | null;
 }
 
-export function getRounds(sportSlug: string) {
-  return request<{ rounds: RoundSummary[] }>(`/api/${sportSlug}/rounds`);
+export async function getRounds(sportSlug: string) {
+  const result = await request<{ rounds: RoundSummary[] }>(`/api/${sportSlug}/rounds`);
+  // QA scripts create real rounds named "qa-…" (e.g. "qa-moments-perfect-<timestamp>") and
+  // some of them read this same list endpoint, so they're hidden here in the customer app
+  // rather than server-side. Without this a leftover QA round showed as the "current
+  // competition" with its internal name and a 2-game count.
+  if (result.ok) return { ...result, data: { ...result.data, rounds: result.data.rounds.filter((r) => !isInternalTestRound(r)) } };
+  return result;
+}
+
+/** True for rounds created by the scripts/qa-*.ts test harness — never shown to customers. */
+export function isInternalTestRound(round: Pick<RoundSummary, "name">): boolean {
+  return /^qa[0-9a-z]*[-_]/i.test(round.name?.trim() ?? "");
 }
 
 export interface RoundDetail {

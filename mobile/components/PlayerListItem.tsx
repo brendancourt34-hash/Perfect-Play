@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { colors, minTouchTarget, spacing } from "../constants/theme";
+import { colors, minTouchTarget, spacing, font } from "../constants/theme";
 import { Icon } from "./icons";
 
 /** Real provider-reported designations only (never "OUT" — those are already excluded server-side, never reach this component). Labels shown to the customer for each. */
@@ -66,20 +66,17 @@ const styles = StyleSheet.create({
   },
   rowPressed: { backgroundColor: colors.surfaceRaised },
   rowDisabled: { opacity: 0.4 },
-  name: { color: colors.foreground, fontSize: 16, fontWeight: "600" },
+  name: { color: colors.foreground, fontSize: 16, fontFamily: font.w600 },
   meta: { color: colors.muted, fontSize: 13, marginTop: 2 },
   mutedText: { color: colors.muted },
   disabledTag: { flexDirection: "row", alignItems: "center", gap: 4 },
-  disabledText: { color: colors.muted2, fontSize: 12, fontWeight: "600" },
-  // Neutral, no-color treatment — this app's design system deliberately has no
-  // warning/danger hue (see constants/theme.ts) — informational only, never alarming.
+  disabledText: { color: colors.muted2, fontSize: 12, fontFamily: font.w600 },
+  // Amber outline: informational, never alarming (Option D's single non-red accent).
   injuryBadge: {
-    backgroundColor: colors.neutralSoft,
     borderWidth: 1,
-    borderColor: colors.neutralBorder,
-    borderRadius: 999,
+    borderColor: "rgba(255, 181, 71, 0.4)",
     paddingHorizontal: 8,
     paddingVertical: 3,
   },
-  injuryBadgeText: { color: colors.muted, fontSize: 10, fontWeight: "700", letterSpacing: 0.2 },
+  injuryBadgeText: { color: colors.warning, fontSize: 10, fontFamily: font.w700, letterSpacing: 0.6, textTransform: "uppercase" },
 });

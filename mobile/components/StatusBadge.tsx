@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { colors, radius, spacing } from "../constants/theme";
+import { colors, radius, spacing, font } from "../constants/theme";
 import { Icon, type IconName } from "./icons";
 
 /**
@@ -12,7 +12,8 @@ type Tone = "neutral" | "brand";
 
 const TONE_STYLES: Record<Tone, { bg: string; fg: string; border: string }> = {
   neutral: { bg: colors.neutralSoft, fg: colors.muted, border: colors.neutralBorder },
-  brand: { bg: colors.brandSoft, fg: colors.brand, border: colors.brandBorder },
+  // Scoreboard look: positive states are a solid red block with white text.
+  brand: { bg: colors.brand, fg: colors.onBrand, border: colors.brand },
 };
 
 export function Badge({ label, tone = "neutral", icon }: { label: string; tone?: Tone; icon?: IconName }) {
@@ -97,5 +98,5 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
     alignSelf: "flex-start",
   },
-  text: { fontSize: 12, fontWeight: "700" },
+  text: { fontSize: 14, fontFamily: font.display, textTransform: "uppercase", letterSpacing: 0.4 },
 });

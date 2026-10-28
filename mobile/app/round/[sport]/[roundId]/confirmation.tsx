@@ -46,13 +46,13 @@ export default function ConfirmationScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.checkCircle}>
-        <Icon name="checkCircle" size={36} color={colors.brand} />
+        <Icon name="checkCircle" size={36} color={colors.brandText} />
       </View>
       <Text style={styles.title}>{entryCount === 1 ? "Your Perfect Round is locked in" : `${entryCount} Perfect Rounds are locked in`}</Text>
 
       <Card style={styles.card}>
         <InfoRow label="Competition" value={`Perfect Play ${sport.name}`} />
-        <InfoRow label="Round" value={roundDetail.round.name ?? `Round ${roundDetail.round.roundNumber}`} />
+        <InfoRow label="Round" value={`Round ${roundDetail.round.roundNumber}`} />
         <InfoRow label="Entries" value={entryIds.map((id) => `#${id}`).join(", ")} />
         {amountPaidCents !== null && <InfoRow label="Amount paid" value={formatAudCents(amountPaidCents)} emphasize />}
         <InfoRow label="Payment" value="Paid from your Perfect Play Balance" />

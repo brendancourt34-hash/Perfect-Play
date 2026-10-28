@@ -6,7 +6,7 @@ import { useAuth } from "../../lib/auth-context";
 import { Button } from "../../components/Button";
 import { TextField } from "../../components/TextField";
 import { Screen } from "../../components/Screen";
-import { colors, spacing, typography } from "../../constants/theme";
+import { colors, spacing, typography, font } from "../../constants/theme";
 
 export default function RegisterScreen() {
   const { register } = useAuth();
@@ -121,13 +121,13 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   checkboxChecked: { backgroundColor: colors.brand, borderColor: colors.brand },
-  checkboxMark: { color: colors.onBrand, fontSize: 13, fontWeight: "800" },
+  checkboxMark: { color: colors.onBrand, fontSize: 13, fontFamily: font.w800 },
   termsText: { flex: 1, color: colors.muted, fontSize: 13, lineHeight: 18 },
-  termsLink: { color: colors.brand, fontWeight: "700", textDecorationLine: "underline" },
+  termsLink: { color: colors.brandText, fontFamily: font.w700, textDecorationLine: "underline" },
   title: { ...typography.title, fontSize: 24, color: colors.foreground, textAlign: "center" },
   subtitle: { color: colors.muted, textAlign: "center", marginTop: spacing.sm, marginBottom: spacing.xxl },
   form: { gap: spacing.xs },
   error: { color: colors.foreground, fontSize: 13, marginTop: spacing.md },
   link: { marginTop: spacing.lg, alignSelf: "center" },
-  linkText: { color: colors.brand, fontSize: 14, fontWeight: "600" },
+  linkText: { color: colors.brandText, fontSize: 14, fontFamily: font.w600 },
 });

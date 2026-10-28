@@ -7,7 +7,7 @@ import { useEntryDraft } from "../../../../lib/entry-draft-context";
 import { Card } from "../../../../components/Card";
 import { Button } from "../../../../components/Button";
 import { ErrorState, LoadingState } from "../../../../components/ScreenStates";
-import { colors, radius, spacing, typography } from "../../../../constants/theme";
+import { colors, spacing, typography, font } from "../../../../constants/theme";
 import { formatAudCents } from "../../../../lib/format";
 
 /** Per-entry price of the cheapest (1-entry) package, used only to compute the "save $X" badge — never used as the actual charge, which always comes from the selected package's own priceCents. */
@@ -140,9 +140,9 @@ export default function ReviewScreen() {
         contentContainerStyle={styles.list}
         ListHeaderComponent={
           <View style={styles.header}>
-            <Text style={styles.title}>YOUR PICKS</Text>
+            <Text style={styles.title}>Lock it in</Text>
             <Text style={styles.subtitle}>
-              {sport.name} {roundDetail.round.name ?? `Round ${roundDetail.round.roundNumber}`} · One set of picks. Get every one right to go
+              {sport.name} {`Round ${roundDetail.round.roundNumber}`} · One set of picks. Get every one right to go
               PERFECT.
             </Text>
             {!hasLocalPicks && sharedSelections && (
@@ -153,7 +153,7 @@ export default function ReviewScreen() {
         renderItem={({ item: game, index }) => (
           <Card style={styles.gameCard}>
             <Text style={styles.gameLabel}>
-              Game {index + 1} — {game.homeTeam.name} vs {game.awayTeam.name}
+              {index + 1} · {game.homeTeam.name} vs {game.awayTeam.name}
             </Text>
             <Text style={styles.playerLine}>{playerName(game.id, effectivePick(game.id))}</Text>
           </Card>
@@ -161,7 +161,7 @@ export default function ReviewScreen() {
         ListFooterComponent={
           <View style={styles.footerContent}>
             <View style={styles.packagesSection}>
-              <Text style={styles.sectionTitle}>HOW MANY ENTRIES?</Text>
+              <Text style={styles.sectionTitle}>How many entries?</Text>
               <Text style={styles.entryCountNote}>
                 All entries use the same picks above. You have {existingEntryCount}/{maxEntries} entries in this round — each is tracked
                 independently.
@@ -180,10 +180,14 @@ export default function ReviewScreen() {
                       accessibilityRole="radio"
                       accessibilityState={{ selected: selectedPackageId === pkg.id, disabled: !fits }}
                     >
-                      <Card style={[styles.packageCard, selectedPackageId === pkg.id && styles.packageCardSelected, !fits && styles.packageCardDisabled] as never}>
+                      <View style={[styles.packageCard, selectedPackageId === pkg.id && styles.packageCardSelected, !fits && styles.packageCardDisabled]}>
+                        <View style={[styles.packageNumber, selectedPackageId === pkg.id && styles.packageNumberSelected]}>
+                          <Text style={[styles.packageNumberText, selectedPackageId === pkg.id && styles.packageNumberTextSelected]}>{pkg.entryCount}</Text>
+                        </View>
                         <View style={styles.packageRow}>
-                          <View>
+                          <View style={{ flex: 1 }}>
                             <Text style={styles.packageLabel}>{pkg.label}</Text>
+                            <Text style={styles.packageEach}>{formatAudCents(Math.round(pkg.priceCents / pkg.entryCount))} per entry</Text>
                             {saveCents > 0 && <Text style={styles.packageSave}>Save {formatAudCents(saveCents)}</Text>}
                             {!fits && <Text style={styles.packageDisabledNote}>Would exceed the {maxEntries}-entry limit</Text>}
                           </View>
@@ -192,12 +196,19 @@ export default function ReviewScreen() {
                             {pkg.badge && <Text style={styles.packageBadge}>{pkg.badge}</Text>}
                           </View>
                         </View>
-                      </Card>
+                      </View>
                     </Pressable>
                   );
                 })
               )}
             </View>
+
+            {selectedPackage && (
+              <Text style={styles.shareLine}>
+                Go PERFECT and you hold <Text style={styles.shareAccent}>{selectedPackage.entryCount} {selectedPackage.entryCount === 1 ? "share" : "shares"}</Text> of
+                the pool. Nobody else PERFECT? You take the lot.
+              </Text>
+            )}
 
             <View style={styles.balanceRow}>
               <Text style={styles.balanceText}>Perfect Play Balance: {balanceCents === null ? "—" : formatAudCents(balanceCents)}</Text>
@@ -227,7 +238,7 @@ export default function ReviewScreen() {
           <Button label="Edit picks" variant="secondary" onPress={() => router.back()} style={{ marginBottom: spacing.sm }} />
         )}
         <Button
-          label={selectedPackage ? `ENTER PERFECT PLAY — ${formatAudCents(selectedPackage.priceCents)}` : "Choose a package"}
+          label={selectedPackage ? `Pay ${formatAudCents(selectedPackage.priceCents)} · Lock it in »` : "Choose a package"}
           onPress={handleSubmit}
           loading={submitting}
           disabled={!selectedPackage}
@@ -239,44 +250,51 @@ export default function ReviewScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
-  list: { paddingHorizontal: spacing.lg, paddingBottom: spacing.md, gap: spacing.md },
+  list: { paddingHorizontal: spacing.lg, paddingBottom: spacing.md, gap: 6 },
   header: { paddingTop: spacing.md, paddingBottom: spacing.sm },
-  title: { ...typography.heading, fontSize: 20, color: colors.foreground },
-  subtitle: { color: colors.muted, fontSize: 13, marginTop: spacing.xs, lineHeight: 18 },
-  reuseNote: { color: colors.muted, fontSize: 12, marginTop: spacing.sm, fontStyle: "italic" },
-  gameCard: { gap: 2 },
-  gameLabel: { color: colors.muted, fontSize: 12, fontWeight: "700", marginBottom: spacing.xs },
-  playerLine: { color: colors.foreground, fontSize: 15, fontWeight: "600" },
+  title: { ...typography.title, color: colors.foreground },
+  subtitle: { color: colors.muted, fontSize: 13, fontFamily: font.w500, marginTop: spacing.xs, lineHeight: 18 },
+  reuseNote: { color: colors.muted, fontSize: 12, fontFamily: font.w500, marginTop: spacing.sm },
+  gameCard: { gap: 2, paddingVertical: spacing.md, borderLeftWidth: 4, borderLeftColor: colors.brand },
+  gameLabel: { color: colors.muted, fontSize: 13, fontFamily: font.displayBold, textTransform: "uppercase", marginBottom: 2 },
+  playerLine: { color: colors.foreground, fontSize: 16, fontFamily: font.w700 },
   footerContent: { marginTop: spacing.md, gap: spacing.md },
-  packagesSection: { gap: spacing.sm, paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.border },
-  sectionTitle: { ...typography.subheading, color: colors.foreground },
-  entryCountNote: { color: colors.muted, fontSize: 12, lineHeight: 17 },
-  capReachedText: { color: colors.foreground, fontSize: 13, backgroundColor: colors.neutralSoft, borderRadius: 10, padding: spacing.md },
-  packageCard: { borderWidth: 1, borderColor: colors.border },
-  packageCardSelected: { borderColor: colors.brand, backgroundColor: colors.brandSoft },
+  packagesSection: { gap: spacing.sm, paddingTop: spacing.md },
+  sectionTitle: { ...typography.title, color: colors.foreground },
+  entryCountNote: { color: colors.muted, fontSize: 13, fontFamily: font.w500, lineHeight: 18 },
+  capReachedText: { color: colors.foreground, fontSize: 13, fontFamily: font.w500, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, padding: spacing.md },
+  packageCard: { flexDirection: "row", alignItems: "stretch", minHeight: 72, backgroundColor: colors.surface, borderWidth: 2, borderColor: colors.border },
+  packageCardSelected: { borderColor: colors.brand },
   packageCardDisabled: { opacity: 0.4 },
-  packageRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
-  packageLabel: { color: colors.foreground, fontSize: 15, fontWeight: "700" },
-  packageSave: { color: colors.brand, fontSize: 12, fontWeight: "600", marginTop: 2 },
-  packageDisabledNote: { color: colors.muted2, fontSize: 11, marginTop: 2 },
+  packageNumber: { width: 72, alignItems: "center", justifyContent: "center", backgroundColor: colors.background },
+  packageNumberSelected: { backgroundColor: colors.brand },
+  packageNumberText: { color: colors.muted, fontFamily: font.display, fontSize: 36 },
+  packageNumberTextSelected: { color: colors.onBrand },
+  packageRow: { flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: spacing.md },
+  packageLabel: { color: colors.foreground, fontSize: 18, fontFamily: font.display, textTransform: "uppercase" },
+  packageEach: { color: colors.muted, fontSize: 12, fontFamily: font.w500 },
+  packageSave: { color: colors.brandText, fontSize: 12, fontFamily: font.w600, marginTop: 2 },
+  packageDisabledNote: { color: colors.muted2, fontSize: 11, fontFamily: font.w500, marginTop: 2 },
   packagePriceBlock: { alignItems: "flex-end" },
-  packagePrice: { color: colors.foreground, fontSize: 18, fontWeight: "800" },
+  packagePrice: { color: colors.foreground, fontSize: 26, fontFamily: font.display },
   packageBadge: {
     color: colors.onBrand,
     backgroundColor: colors.brand,
     fontSize: 10,
-    fontWeight: "800",
-    borderRadius: radius.sm,
+    fontFamily: font.w700,
     paddingHorizontal: 6,
     paddingVertical: 2,
     marginTop: 4,
     overflow: "hidden",
+    textTransform: "uppercase",
   },
+  shareLine: { color: colors.foreground, fontSize: 14, fontFamily: font.w500, lineHeight: 20 },
+  shareAccent: { color: colors.brandText, fontFamily: font.w700 },
   balanceRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
-  balanceText: { color: colors.muted, fontSize: 13 },
-  addFundsLink: { color: colors.brand, fontSize: 13, fontWeight: "700", textDecorationLine: "underline" },
-  insufficientText: { color: colors.foreground, fontSize: 12, backgroundColor: colors.neutralSoft, borderRadius: 10, padding: spacing.sm },
-  errorBox: { backgroundColor: colors.neutralSoft, borderWidth: 1, borderColor: colors.neutralBorder, borderRadius: 10, padding: spacing.md, gap: spacing.xs },
-  errorText: { color: colors.foreground, fontSize: 13 },
+  balanceText: { color: colors.muted, fontSize: 13, fontFamily: font.w500 },
+  addFundsLink: { color: colors.brandText, fontSize: 13, fontFamily: font.w700 },
+  insufficientText: { color: colors.foreground, fontSize: 12, fontFamily: font.w500, backgroundColor: colors.surface, borderLeftWidth: 4, borderLeftColor: colors.warning, padding: spacing.sm },
+  errorBox: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderLeftWidth: 4, borderLeftColor: colors.warning, padding: spacing.md, gap: spacing.xs },
+  errorText: { color: colors.foreground, fontSize: 13, fontFamily: font.w500 },
   footer: { padding: spacing.lg, borderTopWidth: 1, borderTopColor: colors.border, backgroundColor: colors.background },
 });

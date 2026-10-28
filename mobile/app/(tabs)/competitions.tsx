@@ -10,11 +10,11 @@ import { EmptyState, ErrorState } from "../../components/ScreenStates";
 import { IconButton } from "../../components/IconButton";
 import { PPMark } from "../../components/PPMark";
 import { Screen } from "../../components/Screen";
-import { colors, spacing, typography } from "../../constants/theme";
+import { colors, spacing, font } from "../../constants/theme";
 import { formatAuDate, formatAuDateTime, formatAudCents } from "../../lib/format";
 
 const SPORT_SLUGS = Object.keys(SPORTS) as SportSlug[];
-const GUTTER = 18;
+const GUTTER = 20;
 
 function isOpenish(round: api.RoundSummary): boolean {
   return !round.competition || round.competition.state === "open" || round.competition.state === "not_yet_open";
@@ -84,20 +84,18 @@ export default function CompetitionsScreen() {
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.header}>
           <View style={styles.brandRow}>
-            <PPMark size={24} />
-            <Text style={styles.wordmark}>
-              Perfect <Text style={styles.wordmarkAccent}>Play</Text>
-            </Text>
+            <PPMark size={30} />
+            <Text style={styles.wordmark}>Perfect Play</Text>
           </View>
-          <IconButton name="bell" accessibilityLabel="Notifications" variant="plain" onPress={() => router.push("/(tabs)/account")} />
+          <IconButton name="bell" accessibilityLabel="Notifications" variant="filled" onPress={() => router.push("/(tabs)/account")} />
         </View>
 
         <View style={styles.titleBlock}>
-          <Text style={styles.pageTitle}>Competitions</Text>
+          <Text style={styles.pageTitle}>Play</Text>
           <Text style={styles.pageSubtitle}>Choose your sport. Pick your players. Go Perfect.</Text>
         </View>
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.selector}>
+        <View style={styles.selector}>
           {SPORT_SLUGS.map((slug) => {
             const active = slug === sportSlug;
             return (
@@ -112,10 +110,10 @@ export default function CompetitionsScreen() {
               </Pressable>
             );
           })}
-        </ScrollView>
+        </View>
 
         <Text style={styles.sportMeta}>
-          {sport.fullName.toUpperCase()} · {sport.pickLabel}
+          {sport.fullName} · {sport.pickLabel}
         </Text>
 
         {error && (
@@ -126,7 +124,7 @@ export default function CompetitionsScreen() {
 
         {!error && rounds === null && (
           <View style={styles.inlineLoading}>
-            <ActivityIndicator color={colors.brand} />
+            <ActivityIndicator color={colors.brandText} />
             <Text style={styles.inlineLoadingText}>Loading {sport.name} rounds…</Text>
           </View>
         )}
@@ -139,10 +137,10 @@ export default function CompetitionsScreen() {
 
         {current && (
           <View style={styles.sectionGap}>
-            <Text style={styles.sectionLabel}>Current Competition</Text>
+            <Text style={styles.sectionLabel}>Current round</Text>
             <CompetitionCard
               sport={sport}
-              roundLabel={current.name ?? `Round ${current.roundNumber}`}
+              roundLabel={`Round ${current.roundNumber}`}
               gamesCount={current.gamesCount}
               state={current.competition?.state ?? null}
               timingLabel={timingLabel(current)}
@@ -156,12 +154,12 @@ export default function CompetitionsScreen() {
 
         {upcoming.length > 0 && (
           <View style={styles.sectionGap}>
-            <Text style={styles.sectionLabel}>Upcoming Competitions</Text>
+            <Text style={styles.sectionLabel}>Up next</Text>
             <View style={styles.upcomingList}>
               {upcoming.map((round) => (
                 <RoundListItem
                   key={round.id}
-                  title={round.name ?? `Round ${round.roundNumber}`}
+                  title={`${sport.name} · Round ${round.roundNumber}`}
                   state={round.competition?.state ?? null}
                   dateLine={dateLine(round)}
                   feeLine={feeLine(round)}
@@ -181,29 +179,29 @@ export default function CompetitionsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
   content: { paddingBottom: spacing.xl },
-  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: GUTTER, paddingTop: 6 },
+  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: GUTTER, paddingTop: spacing.sm },
   brandRow: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
-  wordmark: { fontSize: 17, fontWeight: "700", color: colors.foreground },
-  wordmarkAccent: { color: colors.brand },
-  titleBlock: { paddingHorizontal: GUTTER, marginTop: 18 },
-  pageTitle: { fontSize: 28, fontWeight: "800", color: colors.foreground, textTransform: "uppercase", letterSpacing: 0.2 },
-  pageSubtitle: { color: colors.muted, fontSize: 13, marginTop: 4 },
-  selector: { flexDirection: "row", gap: spacing.sm, paddingHorizontal: GUTTER, paddingTop: 16 },
+  wordmark: { fontSize: 22, fontFamily: font.display, color: colors.foreground, textTransform: "uppercase", letterSpacing: 1 },
+  titleBlock: { paddingHorizontal: GUTTER, marginTop: spacing.lg },
+  pageTitle: { fontSize: 44, lineHeight: 44, fontFamily: font.display, color: colors.foreground, textTransform: "uppercase" },
+  pageSubtitle: { color: colors.muted, fontSize: 13, fontFamily: font.w500, marginTop: 2 },
+  selector: { flexDirection: "row", gap: 6, paddingHorizontal: GUTTER, paddingTop: spacing.lg },
   pill: {
-    borderRadius: 10,
+    flex: 1,
+    minHeight: 48,
+    alignItems: "center",
+    justifyContent: "center",
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.surface,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: 10,
   },
-  pillActive: { backgroundColor: colors.brandSoft, borderColor: colors.brandBorder },
-  pillText: { color: colors.muted, fontSize: 13, fontWeight: "700" },
-  pillTextActive: { color: colors.brand },
-  sportMeta: { color: colors.muted2, fontSize: 11, fontWeight: "700", letterSpacing: 0.3, paddingHorizontal: GUTTER, marginTop: 10 },
-  sectionGap: { marginTop: 18, paddingHorizontal: GUTTER },
-  sectionLabel: { ...typography.overline, color: colors.foreground, marginBottom: 10 },
-  upcomingList: { gap: spacing.sm },
+  pillActive: { backgroundColor: colors.brand, borderColor: colors.brand },
+  pillText: { color: colors.muted, fontSize: 20, fontFamily: font.display },
+  pillTextActive: { color: colors.onBrand },
+  sportMeta: { color: colors.muted, fontSize: 12, fontFamily: font.w500, paddingHorizontal: GUTTER, marginTop: 10 },
+  sectionGap: { marginTop: spacing.xl, paddingHorizontal: GUTTER },
+  sectionLabel: { color: colors.foreground, fontFamily: font.display, fontSize: 20, textTransform: "uppercase", marginBottom: spacing.sm },
+  upcomingList: { gap: 6 },
   inlineLoading: { flexDirection: "row", alignItems: "center", gap: spacing.sm, paddingHorizontal: GUTTER, marginTop: 24 },
-  inlineLoadingText: { color: colors.muted, fontSize: 13 },
+  inlineLoadingText: { color: colors.muted, fontSize: 13, fontFamily: font.w500 },
 });

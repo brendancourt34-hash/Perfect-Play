@@ -7,7 +7,7 @@ import { useEntryDraft } from "../../../../lib/entry-draft-context";
 import { Button } from "../../../../components/Button";
 import { SectionLabel } from "../../../../components/SectionLabel";
 import { ErrorState, LoadingState } from "../../../../components/ScreenStates";
-import { colors, spacing, typography } from "../../../../constants/theme";
+import { colors, spacing, typography, font } from "../../../../constants/theme";
 import { formatAudCents } from "../../../../lib/format";
 
 type Stage = "idle" | "paying" | "failed" | "cancelled";
@@ -53,7 +53,7 @@ export default function TestPaymentScreen() {
   if (!roundDetail) return null;
 
   const { competition, round } = roundDetail;
-  const roundLabel = round.name ?? `Round ${round.roundNumber}`;
+  const roundLabel = `Round ${round.roundNumber}`;
   const amountLabel = formatAudCents(competition.entryFeeCents);
 
   async function handlePay() {
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background, padding: spacing.xl, alignItems: "center", justifyContent: "center" },
   card: { width: "100%", alignItems: "center" },
   sportName: { ...typography.heading, color: colors.foreground, textAlign: "center", marginTop: spacing.sm },
-  price: { fontSize: 40, fontWeight: "800", color: colors.foreground, marginTop: spacing.md },
-  testLabel: { ...typography.overline, color: colors.brand, marginTop: spacing.lg },
+  price: { fontSize: 40, fontFamily: font.w800, color: colors.foreground, marginTop: spacing.md },
+  testLabel: { ...typography.overline, color: colors.brandText, marginTop: spacing.lg },
   testNote: { color: colors.muted2, fontSize: 12, textAlign: "center", marginTop: spacing.xs, lineHeight: 17 },
   stateTitle: { ...typography.heading, color: colors.foreground, marginBottom: spacing.xs },
   stateBody: { color: colors.muted, textAlign: "center", fontSize: 14, lineHeight: 20 },

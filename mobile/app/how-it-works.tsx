@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Card } from "../components/Card";
 import { PrizeExplainer } from "../components/PrizeExplainer";
-import { colors, spacing, typography } from "../constants/theme";
+import { colors, spacing, typography, font } from "../constants/theme";
 
 const STEPS = [
   {
@@ -57,9 +57,9 @@ const styles = StyleSheet.create({
   content: { padding: spacing.lg, paddingTop: spacing.xl, paddingBottom: spacing.xxl, gap: spacing.md },
   stepCard: { gap: 0 },
   stepRow: { flexDirection: "row", gap: spacing.lg, alignItems: "flex-start" },
-  stepNumber: { ...typography.display, color: colors.brand, width: 36 },
+  stepNumber: { ...typography.display, color: colors.brandText, width: 36 },
   stepTitle: { ...typography.overline, color: colors.foreground },
-  stepBody: { color: colors.foreground, fontSize: 15, fontWeight: "700", marginTop: spacing.xs },
+  stepBody: { color: colors.foreground, fontSize: 15, fontFamily: font.w700, marginTop: spacing.xs },
   stepDetail: { color: colors.muted, fontSize: 13, marginTop: spacing.xs, lineHeight: 19 },
   prizeSection: { marginTop: spacing.lg },
 });

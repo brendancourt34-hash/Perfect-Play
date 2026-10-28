@@ -1,6 +1,6 @@
 import { StyleSheet, Text } from "react-native";
 import { Card } from "./Card";
-import { colors, spacing } from "../constants/theme";
+import { colors, spacing, font } from "../constants/theme";
 
 interface StatCardProps {
   label: string;
@@ -20,7 +20,7 @@ export function StatCard({ label, value, emphasize }: StatCardProps) {
 
 const styles = StyleSheet.create({
   card: { width: "47%", alignItems: "center", paddingVertical: spacing.lg },
-  value: { fontSize: 26, fontWeight: "800", color: colors.foreground },
-  valueEmphasized: { color: colors.brand },
+  value: { fontSize: 26, fontFamily: font.w800, color: colors.foreground },
+  valueEmphasized: { color: colors.brandText },
   label: { color: colors.muted, fontSize: 12, marginTop: spacing.xs },
 });

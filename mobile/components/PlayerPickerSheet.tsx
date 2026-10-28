@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { FlatList, Modal, StyleSheet, Text, View } from "react-native";
-import { colors, spacing } from "../constants/theme";
+import { colors, spacing, font } from "../constants/theme";
 import { IconButton } from "./IconButton";
 import { SearchInput } from "./SearchInput";
 import { PlayerListItem } from "./PlayerListItem";
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.md,
   },
-  title: { color: colors.foreground, fontSize: 18, fontWeight: "800" },
+  title: { color: colors.foreground, fontSize: 18, fontFamily: font.w800 },
   searchWrap: { paddingHorizontal: spacing.lg, marginBottom: spacing.md },
   empty: { padding: spacing.xxl, alignItems: "center" },
   emptyText: { color: colors.muted, fontSize: 14, textAlign: "center", padding: spacing.lg },
