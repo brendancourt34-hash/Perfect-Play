@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "Perfect Play",
+    "slug": "perfect-2",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "perfect2",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.perfect2.app",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.perfect2.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#000000",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-router",
+      "expo-font",
+      "@react-native-vector-icons/lucide",
+      "expo-image",
+      "expo-notifications"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "3872a50c-71a8-426b-9226-cca14dc2a6a5"
+      }
+    },
+    "owner": "perfect-2"
+  }
+}

@@ -16,6 +16,10 @@
 # next.js
 /.next/
 /out/
+# isolated Next build directories used by the settlement load test's separate app
+# server (scripts/loadtest/run-isolated.ts) — generated build artifacts, same as /.next/.
+/.next-loadtest/
+/.next-build-check/
 
 # production
 /build
@@ -39,3 +43,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.neon

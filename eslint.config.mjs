@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // The isolated settlement load test's own Next build directory (see
+    // next.config.ts's LOAD_TEST_ISOLATED_DIST_DIR / scripts/loadtest/README.md) — a
+    // generated build artifact exactly like .next/, never source to lint.
+    ".next-loadtest/**",
+    // The Expo mobile app is a separate package with its own tooling/lint setup.
+    "mobile/**",
   ]),
 ]);
 
